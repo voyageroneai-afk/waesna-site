@@ -288,25 +288,8 @@ footer{padding:34px var(--pad) 56px;border-top:1px solid var(--rule);display:fle
   <span><a href="privacy.html">Gizlilik ve KVKK</a> · <a href="terms.html">Kullanım Koşulları</a> · <a id="mailFoot" href="#"></a></span>
 </footer>
 
+<script src="config.js"></script>
 <script>
-/* ═══════════ AYARLAR — tek düzenleme noktası ═══════════
-   buy:       ödeme sağlayıcısında (Gumroad, Lemon Squeezy, Payhip…) ürünü
-              oluşturunca aldığın HERKESE AÇIK ödeme adresi.
-   downloads: GitHub Releases dosya adresleri.
-   Boş bırakılan alan kırık görünmez: satın alma düğmesi e-postaya döner,
-   indirme kartı "yakında" olur.
-   ⚠️ Bu dosya herkese açıktır. Gizli API anahtarı / secret ASLA yazma. */
-const CONFIG = {
-  email: "voyageroneai@gmail.com",
-  version: "1.0.0",
-  buy: { pro: "", team: "", company: "" },
-  downloads: {
-    mac: "https://voyageroneai-afk.github.io/waesna-site/downloads/VoyagerOne-1.0.0-macOS.dmg",
-    windows: "",
-    linux: ""
-  }
-};
-
 /* satın alma */
 document.querySelectorAll("[data-buy]").forEach(btn=>{
   const key = btn.dataset.buy;
