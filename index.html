@@ -3,15 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>WAESNA — Akıllı Yazılım, AI ve Otomasyon</title>
-<meta name="description" content="WAESNA; netlik, performans ve geleceğe hazır olma üzerine mühendislik yapılmış akıllı sistemler üretir. Ürünler: VoyagerOne AI Workstation ve Appify macOS App Builder.">
-<meta name="theme-color" content="#f5f5f3">
+<title>WAESNA — VoyagerOne masaüstü yapay zekâ çalışma alanı</title>
+<meta name="description" content="VoyagerOne; macOS, Windows ve Linux için masaüstü yapay zekâ çalışma alanı. Yerel modelle çevrimdışı çalışır, belge üretir, onayınla komut çalıştırır. Sohbetler ve dosyalar cihazında kalır.">
+<meta name="theme-color" content="#F7F4EE">
 <link rel="canonical" href="__SITE_URL__/">
 
-<!-- Sosyal önizleme -->
 <meta property="og:type" content="website">
-<meta property="og:title" content="WAESNA — Akıllı Yazılım, AI ve Otomasyon">
-<meta property="og:description" content="Gerçek sorunlar için gerçek araçlar. VoyagerOne & Appify.">
+<meta property="og:title" content="VoyagerOne — masaüstü yapay zekâ çalışma alanı">
+<meta property="og:description" content="Yerel modelle çevrimdışı çalışır, belge üretir, onayınla komut çalıştırır.">
 <meta property="og:url" content="__SITE_URL__/">
 <meta property="og:image" content="__SITE_URL__/assets/og.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -21,577 +20,331 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600&family=Geist+Mono:wght@400;500&family=Geist:wght@400;500;600&display=swap" rel="stylesheet">
 
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Organization","name":"WAESNA",
- "url":"__SITE_URL__/","description":"Akıllı yazılım, AI ve otomasyon.",
- "logo":"__SITE_URL__/assets/waesna-mark.svg","email":"hello@waesna.com"}
+ "url":"__SITE_URL__/","logo":"__SITE_URL__/assets/waesna-mark.png"}
 </script>
 
 <style>
-/* ═══════════════ TOKENS ═══════════════ */
+/* ═══════════ TOKENS ═══════════ */
 :root{
-  --paper:#f5f5f3;
-  --paper-lift:#fbfbfa;
-  --ink:#080808;
-  --ink-2:#55554f;
-  --ink-3:#8a8a82;
-  --ink-4:#b4b4ac;
-  --rule:#deded9;
-  --rule-soft:#e8e8e3;
-  --accent:#080808;
-
-  --font-display:"Archivo","Helvetica Neue",Arial,sans-serif;
-  --font-body:"Archivo","Helvetica Neue",Arial,sans-serif;
-  --font-mono:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,monospace;
-
-  --pad:5vw;
-  --ease:cubic-bezier(.22,1,.36,1);
+  --paper:#F7F4EE; --raise:#FFFDF9; --ink:#17140F; --ink-2:#514B41; --ink-3:#8B8376;
+  --rule:#E4DCCE; --accent:#B97F3A; --accent-2:#D9A45E;
+  --display:"Bricolage Grotesque",Georgia,serif;
+  --body:"Geist","Helvetica Neue",Arial,sans-serif;
+  --mono:"Geist Mono",ui-monospace,Menlo,monospace;
+  --pad:clamp(20px,5vw,84px);
+  --ease:cubic-bezier(.2,.7,.3,1);
+  /* Tek tipografi ölçeği — her başlık bu adımlardan birini kullanır. */
+  --t-hero:clamp(38px,5.4vw,70px); --t-sec:clamp(27px,3vw,38px);
+  --t-card:19px; --t-body:16px; --t-small:14px; --t-mono:12px;
 }
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){
+  --paper:#111010; --raise:#191715; --ink:#F4F0E8; --ink-2:#B5AC9E; --ink-3:#847B6E; --rule:#2B2723;
+}}
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{
-  background:var(--paper);color:var(--ink);
-  font-family:var(--font-body);font-size:16px;line-height:1.6;
-  overflow-x:hidden;-webkit-font-smoothing:antialiased;
-}
+body{background:var(--paper);color:var(--ink);font:var(--t-body)/1.65 var(--body);
+  -webkit-font-smoothing:antialiased;overflow-x:hidden}
 a{color:inherit;text-decoration:none}
-::selection{background:var(--ink);color:var(--paper)}
-:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:3px}
+h1,h2,h3{font-family:var(--display);font-weight:600;letter-spacing:-.02em;line-height:1.05}
+h1{font-size:var(--t-hero)}h2{font-size:var(--t-sec)}h3{font-size:var(--t-card);letter-spacing:-.01em;line-height:1.25}
+.mono{font:500 var(--t-mono)/1.5 var(--mono);letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3)}
+section{padding:clamp(64px,9vw,132px) var(--pad);border-top:1px solid var(--rule)}
+.sec-head{display:grid;grid-template-columns:200px 1fr;gap:28px;margin-bottom:46px;align-items:start}
+.lead{color:var(--ink-2);max-width:60ch}
 
-/* ═══════════════ MİKRO ETİKET ═══════════════ */
-.mono{
-  font-family:var(--font-mono);font-size:11px;font-weight:500;
-  letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3);
-}
-
-/* ═══════════════ NAV ═══════════════ */
-.nav{
-  position:fixed;top:0;left:0;width:100%;height:76px;z-index:100;
-  padding:0 var(--pad);display:flex;align-items:center;justify-content:space-between;
-  background:color-mix(in srgb,var(--paper) 86%,transparent);
-  backdrop-filter:saturate(1.4) blur(16px);-webkit-backdrop-filter:saturate(1.4) blur(16px);
-  border-bottom:1px solid transparent;transition:border-color .3s var(--ease);
-}
-.nav.scrolled{border-bottom-color:var(--rule)}
-.brand{display:flex;align-items:center;gap:13px;color:var(--ink)}
-.brand .mark{width:30px;height:auto;display:block}
-.brand .word{width:88px;height:auto;display:block}
-.nav-links{display:flex;gap:30px}
-.nav-links a{
-  font-family:var(--font-mono);font-size:11px;font-weight:500;
-  letter-spacing:.16em;text-transform:uppercase;color:var(--ink-2);
-  position:relative;padding:4px 0;transition:color .2s;
-}
-.nav-links a::after{
-  content:"";position:absolute;left:0;bottom:0;width:0;height:1px;
-  background:var(--ink);transition:width .3s var(--ease);
-}
+/* ═══════════ NAV ═══════════ */
+.nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;
+  gap:20px;padding:14px var(--pad);background:color-mix(in srgb,var(--paper) 88%,transparent);
+  backdrop-filter:blur(12px);border-bottom:1px solid transparent;transition:border-color .3s}
+.nav.on{border-bottom-color:var(--rule)}
+.logo{display:flex;align-items:center;gap:11px;font:600 15px/1 var(--display);letter-spacing:.16em}
+.logo img{height:26px;width:auto;display:block}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .logo img{filter:invert(1)}}
+.nav-links{display:flex;gap:26px;font-size:var(--t-small);color:var(--ink-2)}
 .nav-links a:hover{color:var(--ink)}
-.nav-links a:hover::after{width:100%}
+@media (max-width:760px){.nav-links{display:none}}
 
-/* ═══════════════ HERO ═══════════════ */
-.hero{
-  min-height:100svh;padding:150px var(--pad) 80px;
-  display:grid;grid-template-columns:1.25fr .75fr;gap:7vw;align-items:center;
-}
-.hero-title{
-  font-family:var(--font-display);font-weight:800;
-  font-size:clamp(68px,12.5vw,186px);line-height:.8;letter-spacing:-.055em;
-  margin:26px 0 0;
-}
-.hero-desc{
-  max-width:620px;margin-top:38px;
-  font-size:clamp(19px,2.1vw,28px);line-height:1.3;letter-spacing:-.02em;
-  color:var(--ink-2);text-wrap:balance;
-}
-.hero-meta{display:flex;gap:28px;flex-wrap:wrap;margin-top:44px}
-.hero-meta span{position:relative;padding-left:15px}
-.hero-meta span::before{
-  content:"";position:absolute;left:0;top:7px;width:5px;height:5px;background:var(--ink);
-}
-.hero-aside{
-  padding-left:5vw;border-left:1px solid var(--rule);
-  display:flex;flex-direction:column;justify-content:center;gap:34px;
-}
-.hero-mark{width:min(290px,74%);height:auto;color:var(--ink)}
+/* ═══════════ HERO ═══════════ */
+.hero{display:grid;grid-template-columns:1.25fr .75fr;gap:clamp(30px,5vw,70px);align-items:center;
+  padding:clamp(48px,8vw,104px) var(--pad) clamp(56px,8vw,112px);border-top:0}
+.hero p.lead{font-size:18px;margin:20px 0 32px}
+.hero .kicker{margin-bottom:20px}
+.vmark{justify-self:center;width:min(300px,64vw)}
+.vmark svg{width:100%;height:auto;display:block}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:9px;padding:12px 20px;border-radius:2px;
+  font-size:15px;font-weight:500;border:1px solid var(--ink);transition:.2s var(--ease)}
+.btn.solid{background:var(--ink);color:var(--paper)}
+.btn.solid:hover{background:var(--accent);border-color:var(--accent)}
+.btn.line:hover{background:var(--ink);color:var(--paper)}
+.facts{display:flex;gap:26px;flex-wrap:wrap;margin-top:34px;padding-top:22px;border-top:1px solid var(--rule)}
+.facts div{font-size:var(--t-small);color:var(--ink-2)}
+.facts b{display:block;font:600 22px/1.2 var(--display);color:var(--ink)}
 
-/* ═══════════════ BÖLÜM ═══════════════ */
-section{padding:clamp(80px,10vw,170px) var(--pad);border-top:1px solid var(--rule)}
-.sec-head{display:grid;grid-template-columns:.75fr 2.25fr;gap:6vw;margin-bottom:6vw}
-.sec-title{
-  font-family:var(--font-display);font-weight:700;
-  font-size:clamp(38px,5.2vw,78px);line-height:.95;letter-spacing:-.05em;
-  max-width:900px;white-space:pre-line;
-}
+/* ═══════════ GRIDS ═══════════ */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule)}
+.cell{background:var(--raise);padding:28px 26px;display:flex;flex-direction:column;gap:9px}
+.cell p{color:var(--ink-2);font-size:15px}
+.cell .mono{margin-bottom:6px;color:var(--accent)}
+@media (max-width:900px){.grid{grid-template-columns:1fr}}
 
-/* ═══════════════ ÜRÜNLER ═══════════════ */
-.products{display:grid;grid-template-columns:1.15fr .85fr;gap:1px;background:var(--rule);border:1px solid var(--rule)}
-.card{
-  background:var(--paper);padding:clamp(30px,3.4vw,52px);
-  display:flex;flex-direction:column;position:relative;
-  transition:background .35s var(--ease);
-}
-.card:hover{background:var(--paper-lift)}
-.card-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:clamp(32px,4vw,56px)}
-.badge{
-  font-family:var(--font-mono);font-size:9.5px;font-weight:500;letter-spacing:.16em;
-  text-transform:uppercase;border:1px solid var(--ink);border-radius:999px;
-  padding:5px 11px;color:var(--ink);
-}
-.prod-head{display:flex;align-items:center;gap:17px;margin-bottom:22px}
-.prod-icon{
-  width:54px;height:54px;flex:0 0 54px;border:1px solid var(--rule);
-  display:grid;place-items:center;background:var(--paper-lift);
-}
-.prod-icon svg{width:30px;height:30px;stroke:var(--ink);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.prod-name{font-family:var(--font-display);font-weight:700;font-size:clamp(28px,3vw,38px);letter-spacing:-.035em;line-height:1}
-.prod-sub{margin-top:5px}
-.prod-desc{color:var(--ink-2);font-size:15.5px;line-height:1.65;max-width:520px;margin-bottom:30px}
-.feat{list-style:none;display:flex;flex-direction:column;gap:11px;margin-bottom:34px;flex:1}
-.feat li{font-size:14px;color:var(--ink-2);padding-left:20px;position:relative;line-height:1.5}
-.feat li::before{content:"";position:absolute;left:0;top:9px;width:9px;height:1px;background:var(--ink-4)}
-.price-row{display:flex;align-items:flex-end;gap:12px;padding-top:24px;border-top:1px solid var(--rule);margin-bottom:8px}
-.price{font-family:var(--font-display);font-weight:700;font-size:clamp(30px,3.2vw,40px);letter-spacing:-.04em;line-height:1}
-.price-meta{display:flex;flex-direction:column;gap:2px;padding-bottom:4px}
-.price-meta span{font-size:12px;color:var(--ink-3)}
-.note{margin:14px 0 22px}
-.btn{
-  display:inline-flex;align-items:center;justify-content:center;gap:9px;
-  padding:15px 26px;border-radius:999px;border:1px solid var(--ink);
-  background:var(--ink);color:var(--paper);cursor:pointer;
-  font-family:var(--font-mono);font-size:11px;font-weight:500;letter-spacing:.13em;
-  text-transform:uppercase;width:fit-content;
-  transition:transform .25s var(--ease),background .25s,color .25s;
-}
-.btn:hover{transform:translateY(-2px)}
-.btn:active{transform:translateY(0)}
-.btn svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2.2}
-.btn.ghost{background:transparent;color:var(--ink)}
-.btn.ghost:hover{background:var(--ink);color:var(--paper)}
+/* adımlar */
+.steps{counter-reset:s;display:grid;gap:1px;background:var(--rule);border:1px solid var(--rule)}
+.step{background:var(--raise);padding:26px;display:grid;grid-template-columns:52px 1fr;gap:20px;align-items:start}
+.step::before{counter-increment:s;content:counter(s,decimal-leading-zero);
+  font:500 var(--t-mono)/1 var(--mono);color:var(--accent);padding-top:5px}
+.step p{color:var(--ink-2);font-size:15px;margin-top:5px}
 
-/* ═══════════════ SİSTEM / YAKLAŞIM IZGARASI ═══════════════ */
-.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule)}
-.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);margin-top:6vw}
-.tile{background:var(--paper);padding:clamp(28px,2.8vw,42px);min-height:290px;display:flex;flex-direction:column;transition:background .35s var(--ease)}
-.tile:hover{background:var(--paper-lift)}
-.tile h3{font-family:var(--font-display);font-weight:600;font-size:clamp(21px,2vw,26px);letter-spacing:-.03em;margin:auto 0 14px}
-.tile p{color:var(--ink-2);font-size:15px;line-height:1.6;max-width:400px}
+/* teknik tablo */
+.spec{border:1px solid var(--rule)}
+.spec div{display:grid;grid-template-columns:230px 1fr;gap:18px;padding:15px 22px;border-top:1px solid var(--rule);font-size:15px}
+.spec div:first-child{border-top:0}
+.spec dt{color:var(--ink-3);font-size:var(--t-small)}
+.spec dd{color:var(--ink-2)}
+@media (max-width:700px){.spec div{grid-template-columns:1fr;gap:4px}}
 
-/* ═══════════════ MANİFESTO ═══════════════ */
-.statement{
-  font-family:var(--font-display);font-weight:700;
-  font-size:clamp(40px,6.6vw,100px);line-height:.94;letter-spacing:-.055em;
-  max-width:1250px;text-wrap:balance;
-}
-.muted{color:var(--ink-4)}
+/* fiyat */
+.plans{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule)}
+.plan{background:var(--raise);padding:28px 24px;display:flex;flex-direction:column;gap:12px}
+.plan.hl{background:var(--paper);box-shadow:inset 0 0 0 1px var(--accent)}
+.price{font:600 34px/1 var(--display);letter-spacing:-.02em}
+.price span{font:400 13px/1 var(--body);color:var(--ink-3);display:block;margin-top:7px}
+.plan ul{list-style:none;display:flex;flex-direction:column;gap:7px;font-size:var(--t-small);color:var(--ink-2);margin-top:2px}
+.plan li::before{content:"—";color:var(--accent);margin-right:8px}
+.plan .btn{margin-top:auto;justify-content:center}
+@media (max-width:980px){.plans{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.plans{grid-template-columns:1fr}}
 
-/* ═══════════════ İLETİŞİM ═══════════════ */
-.contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:6vw;align-items:start}
-.contact-lead{font-size:clamp(18px,1.9vw,22px);line-height:1.5;color:var(--ink-2);max-width:520px}
-.direct{margin-top:34px;display:flex;flex-direction:column;gap:12px}
-.direct a{
-  font-family:var(--font-display);font-weight:600;font-size:clamp(20px,2.2vw,28px);
-  letter-spacing:-.03em;width:fit-content;border-bottom:1px solid var(--rule);
-  padding-bottom:3px;transition:border-color .25s;
-}
-.direct a:hover{border-bottom-color:var(--ink)}
-form{display:flex;flex-direction:column;gap:16px}
-.field label{display:block;margin-bottom:8px}
-.field input,.field textarea{
-  width:100%;padding:14px 16px;background:var(--paper-lift);
-  border:1px solid var(--rule);border-radius:2px;
-  font-family:var(--font-body);font-size:15px;color:var(--ink);
-  transition:border-color .2s,background .2s;
-}
-.field textarea{min-height:132px;resize:vertical}
-.field input:focus,.field textarea:focus{outline:none;border-color:var(--ink);background:#fff}
-.form-note{margin-top:4px}
-.form-status{font-size:14px;min-height:20px}
-.form-status.ok{color:#1c7a4a}
-.form-status.err{color:#b3261e}
+/* indirme */
+.dl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule)}
+.dl{background:var(--raise);padding:28px 26px;display:flex;flex-direction:column;gap:8px;transition:.2s var(--ease)}
+.dl svg{width:26px;height:26px;fill:currentColor}
+.dl b{font-size:17px;font-weight:600}
+.dl:hover{background:var(--ink);color:var(--paper)}
+.dl[aria-disabled=true]{opacity:.45}
+.dl[aria-disabled=true]:hover{background:var(--raise);color:inherit}
+@media (max-width:900px){.dl-grid{grid-template-columns:1fr}}
 
-/* ═══════════════ FOOTER ═══════════════ */
-footer{
-  padding:42px var(--pad);border-top:1px solid var(--rule);
-  display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;
-}
-.foot-mark{width:26px;height:auto;color:var(--ink-4)}
+/* sss */
+details{border-top:1px solid var(--rule);padding:16px 0}
+details:last-of-type{border-bottom:1px solid var(--rule)}
+summary{cursor:pointer;font-weight:500;list-style:none;display:flex;justify-content:space-between;gap:20px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--accent);font-family:var(--mono)}
+details[open] summary::after{content:"–"}
+details p{color:var(--ink-2);font-size:15px;margin-top:10px;max-width:70ch}
 
-/* ═══════════════ REVEAL ═══════════════ */
-.rv{opacity:0;transform:translateY(22px);transition:opacity .75s var(--ease),transform .75s var(--ease)}
+footer{padding:34px var(--pad) 56px;border-top:1px solid var(--rule);display:flex;
+  justify-content:space-between;gap:18px;flex-wrap:wrap;font-size:13px;color:var(--ink-3)}
+
+/* tek ve ölçülü hareket: bölümler görünürken hafifçe belirir */
+.rv{opacity:0;transform:translateY(14px);transition:opacity .5s var(--ease),transform .5s var(--ease)}
 .rv.in{opacity:1;transform:none}
-
-/* ═══════════════ MOBİL ═══════════════ */
-@media(max-width:900px){
-  .nav-links{display:none}
-  .hero{grid-template-columns:1fr;padding:120px var(--pad) 70px;min-height:auto}
-  .hero-aside{padding:50px 0 0;border-left:none;border-top:1px solid var(--rule)}
-  .hero-mark{width:180px}
-  .sec-head{grid-template-columns:1fr;gap:22px;margin-bottom:40px}
-  .products,.grid-3,.grid-2,.contact-wrap{grid-template-columns:1fr}
-  .contact-wrap{gap:48px}
-  .tile{min-height:auto}
-}
-@media(prefers-reduced-motion:reduce){
-  *{animation-duration:.01ms!important;transition-duration:.01ms!important}
-  html{scroll-behavior:auto}
-  .rv{opacity:1;transform:none}
-}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+@media (max-width:900px){.hero{grid-template-columns:1fr}.vmark{display:none}.sec-head{grid-template-columns:1fr;gap:14px;margin-bottom:32px}}
 </style>
 </head>
 <body>
 
 <nav class="nav" id="nav">
-  <a class="brand" href="#top" aria-label="WAESNA ana sayfa">
-    <svg class="mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 319 226" fill="currentColor" fill-rule="evenodd" role="img" aria-label="WAESNA"><path d="M 318.75 16.75 L 225.00 16.75 L 202.00 57.00 L 215.25 85.75 L 242.25 39.75 L 273.75 41.00 L 199.75 170.75 L 159.00 105.00 L 120.25 171.75 L 44.00 41.00 L 73.50 40.00 L 101.25 87.25 L 115.75 58.50 L 92.25 17.25 L 0.00 18.50 L 118.00 225.75 L 159.50 154.25 L 201.00 223.50 Z M 159.75 0.00 L 102.00 108.50 L 116.00 133.25 L 158.75 59.75 L 196.25 125.50 L 211.00 100.75 Z"/></svg>
-    <svg class="word" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 446 226" fill="currentColor" fill-rule="evenodd" role="img" aria-hidden="true" focusable="false" aria-label="WAESNA"><path d="M 0.25 67.25 L 19.75 166.00 L 38.75 166.25 L 51.25 107.75 L 63.75 166.00 L 82.25 166.50 L 102.50 67.50 L 82.75 68.00 L 72.50 129.75 L 60.50 75.00 L 42.25 75.00 L 30.50 129.75 L 20.00 67.75 Z M 306.25 67.25 L 306.00 166.25 L 324.75 166.25 L 325.25 110.25 L 348.25 165.50 L 366.50 166.25 L 366.75 67.50 L 348.00 67.25 L 347.50 122.50 L 325.25 67.75 Z M 398.00 67.00 L 374.00 166.25 L 393.50 166.50 L 398.00 146.25 L 408.25 145.75 L 416.25 130.25 L 425.25 166.00 L 445.50 166.25 L 422.00 68.00 Z M 120.75 67.00 L 97.25 166.25 L 116.75 166.25 L 121.00 146.25 L 131.25 145.75 L 140.50 130.00 L 148.50 166.00 L 168.00 166.50 L 145.00 67.75 Z M 249.25 67.25 L 237.50 78.50 L 237.50 108.50 L 275.00 132.25 L 275.25 148.50 L 257.50 149.25 L 256.00 129.50 L 237.50 136.25 L 237.75 155.25 L 249.75 166.50 L 283.50 166.25 L 294.75 155.50 L 295.00 123.25 L 257.00 99.25 L 257.00 84.75 L 274.75 84.25 L 276.50 101.25 L 294.75 94.50 L 294.75 78.50 L 283.25 67.25 Z M 175.75 67.25 L 175.50 165.75 L 220.25 166.50 L 230.75 149.00 L 195.00 148.50 L 195.25 124.25 L 211.25 123.75 L 221.00 107.75 L 195.75 106.75 L 195.00 85.00 L 221.00 84.00 L 230.75 67.25 Z M 132.25 92.00 L 133.00 92.50 L 134.00 99.00 L 134.75 100.50 L 135.75 107.00 L 136.50 109.00 L 137.00 114.25 L 139.75 124.50 L 140.25 128.00 L 139.50 128.75 L 125.50 128.75 L 125.00 128.25 L 125.00 126.00 L 125.75 124.25 L 127.00 116.50 L 127.75 115.00 L 130.00 101.50 L 131.75 95.25 L 131.75 92.50 Z M 409.25 92.25 L 410.00 92.75 L 410.50 94.25 L 413.00 109.75 L 413.75 111.00 L 414.75 117.25 L 415.50 118.75 L 416.75 128.25 L 416.25 128.75 L 402.00 128.50 L 402.00 126.00 L 403.75 120.00 L 405.25 109.75 L 405.75 109.00 L 406.00 106.00 L 406.75 104.75 L 407.00 102.00 L 407.75 100.50 L 408.00 97.00 Z"/></svg>
-  </a>
+  <a class="logo" href="#top"><img src="assets/waesna-mark.png" alt="WAESNA" width="704" height="466">WAESNA</a>
   <div class="nav-links">
-    <a href="#products">Ürünler</a>
-    <a href="#systems">Sistemler</a>
-    <a href="#approach">Yaklaşım</a>
-    <a href="#contact">İletişim</a>
+    <a href="#urun">Ürün</a><a href="#nasil">Nasıl çalışır</a><a href="#teknik">Teknik</a>
+    <a href="#fiyat">Fiyat</a><a href="#indir">İndir</a><a href="#sss">SSS</a>
   </div>
+  <a class="btn solid" href="#indir">İndir</a>
 </nav>
 
-<main id="top">
+<header class="hero" id="top">
+  <div>
+    <p class="mono kicker">WAESNA · VoyagerOne 1.0</p>
+    <h1>Masaüstünde çalışan yapay zekâ çalışma alanı.</h1>
+    <p class="lead">VoyagerOne; kod yazmak, belge üretmek ve bilgisayarında iş yapmak için kullanılan bir masaüstü uygulaması. Yerel modelle tamamen çevrimdışı çalışabilir ya da kendi API anahtarınla bulut modeline bağlanır. Sohbetlerin ve dosyaların bu bilgisayarda kalır.</p>
+    <div class="cta">
+      <a class="btn solid" href="#indir">İndir ve 7 gün dene</a>
+      <a class="btn line" href="#fiyat">Fiyatlar</a>
+    </div>
+    <div class="facts">
+      <div><b>72</b>uzman ajan hattı</div>
+      <div><b>5</b>kalite denetimi katmanı</div>
+      <div><b>3</b>işletim sistemi</div>
+      <div><b>0</b>bulut hesabı</div>
+    </div>
+  </div>
+  <div class="vmark" aria-hidden="true">
+    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <defs><linearGradient id="vg" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#D9A45E"/><stop offset="1" stop-color="#A9722F"/></linearGradient></defs>
+      <path fill="url(#vg)" d="M48.3 89.8 L46.5 89.8 L45.4 88.9 L6.5 26.6 L6.0 25.1 L7.4 22.8 L14.5 22.5 L16.4 23.6 L47.2 74.2 L49.5 76.0 L54.9 76.3 L55.5 76.9 L55.8 78.1 Z"/>
+      <path fill="url(#vg)" d="M58.4 69.4 L53.0 69.4 L51.7 68.9 L50.9 67.7 L51.4 65.0 L83.9 11.5 L85.5 10.2 L92.9 10.4 L94.0 12.0 L93.5 14.3 L61.0 67.5 Z"/>
+    </svg>
+  </div>
+</header>
 
-<!-- ══════════ HERO ══════════ -->
-<section class="hero" style="border-top:none">
+<section id="urun">
+  <div class="sec-head rv"><p class="mono">01 — Ürün</p><h2>Ne yapar</h2></div>
+  <div class="grid rv">
+    <div class="cell"><p class="mono">Model</p><h3>Yerel ya da bulut</h3>
+      <p>Ollama kuruluysa model bu bilgisayarda çalışır ve mesajların dışarı çıkmaz. Dilersen kendi Gemini, OpenAI (ve uyumlu uçlar) veya Anthropic anahtarını girersin. Anahtar yalnızca senin kullanıcı hesabının okuyabildiği bir dosyada tutulur.</p></div>
+    <div class="cell"><p class="mono">Ajan hattı</p><h3>72 ajan, 5 denetim</h3>
+      <p>Karmaşık işlerde planlayıcı, mühendislik ve kalite ajanları sırayla çalışır; cevap beş bağımsız denetimden geçer. Basit sorular tek adımda yanıtlanır, gereksiz tur atılmaz.</p></div>
+    <div class="cell"><p class="mono">Çıktı</p><h3>Belge ve dosya üretimi</h3>
+      <p>Word, Excel, PowerPoint, PDF, SVG ve 3D model dosyalarını sohbetin içinden üretir. Dosyalar çalışma klasörüne kaydedilir, tek tıkla açılır.</p></div>
+    <div class="cell"><p class="mono">Bilgisayar erişimi</p><h3>Onayınla komut çalıştırma</h3>
+      <p>Terminal komutu çalıştırır, dosya okur, yazar, düzenler ve arar. Her komut ve dosya değişikliği öncesi işletim sisteminin kendi onay penceresi açılır. Varsayılan olarak kapalıdır.</p></div>
+    <div class="cell"><p class="mono">Kod</p><h3>Çalıştırılabilir kod tuvali</h3>
+      <p>Ürettiği Python ve JavaScript kodunu ayrı, sınırlandırılmış bir süreçte çalıştırır; paket kurar, çıktıyı gösterir. Tarayıcıda çalışan canlı önizleme üretebilir.</p></div>
+    <div class="cell"><p class="mono">Giriş</p><h3>Çevrimdışı dikte</h3>
+      <p>Mikrofon düğmesine basıp konuşursun, konuşma tanıma bu bilgisayarda çalışır. Ses kaydı hiçbir yere gönderilmez.</p></div>
+  </div>
+</section>
+
+<section id="nasil">
+  <div class="sec-head rv"><p class="mono">02 — Kurulum</p><h2>Nasıl çalışır</h2></div>
+  <div class="steps rv">
+    <div class="step"><div><h3>İndir ve aç</h3><p>Kurulum sihirbazı gerekli bileşenleri indirir ve mikrofonu test eder. İnternet yalnızca bu adımda ve bulut modeli kullanırsan gerekir.</p></div></div>
+    <div class="step"><div><h3>Modelini seç</h3><p>Ollama kuruluysa uygulama yerel modelleri kendisi bulur. Bulut kullanacaksan Ayarlar → Motor bölümüne kendi API anahtarını girersin.</p></div></div>
+    <div class="step"><div><h3>Çalış</h3><p>Sohbet et, belge ürettir, kod çalıştır. Lisans anahtarını Ayarlar → Lisans bölümüne girdiğinde deneme süresi biter ve süresiz kullanım açılır.</p></div></div>
+  </div>
+</section>
+
+<section id="teknik">
+  <div class="sec-head rv"><p class="mono">03 — Teknik</p><h2>Gereksinimler</h2></div>
+  <dl class="spec rv">
+    <div><dt>İşletim sistemi</dt><dd>macOS 11 ve üzeri (Apple Silicon) · Windows 10/11 (64 bit) · Linux (64 bit)</dd></div>
+    <div><dt>Kurulum boyutu</dt><dd>Yaklaşık 85 MB. Dikte modeli ilk açılışta ayrıca indirilir (~45 MB).</dd></div>
+    <div><dt>Yapay zekâ sağlayıcıları</dt><dd>Ollama (yerel) · Google Gemini · OpenAI ve uyumlu uçlar · Anthropic Claude</dd></div>
+    <div><dt>Veri konumu</dt><dd>Sohbetler, projeler ve dosyalar yalnızca bu bilgisayarda. Bulut hesabı ve sunucu senkronizasyonu yok.</dd></div>
+    <div><dt>Arayüz dili</dt><dd>Türkçe ve İngilizce</dd></div>
+    <div><dt>Lisans</dt><dd>Tek seferlik ödeme, süresiz kullanım. Anahtar çevrimdışı doğrulanır; etkinleştirmek için internet gerekmez.</dd></div>
+  </dl>
+</section>
+
+<section id="fiyat">
+  <div class="sec-head rv"><p class="mono">04 — Fiyat</p><h2>Planlar</h2></div>
+  <p class="lead rv" style="margin-bottom:34px">Tek seferlik ödeme, süresiz lisans. Vergi ödeme sayfasında ülkene göre eklenir.</p>
+  <div class="plans rv">
+    <div class="plan"><p class="mono">Deneme</p><div class="price">Ücretsiz<span>7 gün, tam sürüm</span></div>
+      <ul><li>Tüm özellikler açık</li><li>Kart bilgisi istemez</li></ul>
+      <a class="btn line" href="#indir">İndir</a></div>
+    <div class="plan hl"><p class="mono">Pro</p><div class="price">$149<span>1 kullanıcı · süresiz</span></div>
+      <ul><li>Sınırsız kullanım</li><li>72 ajanlık tam hat</li><li>VoyagerOne API</li></ul>
+      <button class="btn solid" data-buy="pro"><span>Satın al</span></button></div>
+    <div class="plan"><p class="mono">Team</p><div class="price">$599<span>5 kullanıcı · süresiz</span></div>
+      <ul><li>Pro'daki her şey</li><li>Organizasyon yönetimi</li><li>Üye yetkileri</li></ul>
+      <button class="btn line" data-buy="team"><span>Satın al</span></button></div>
+    <div class="plan"><p class="mono">Company</p><div class="price">$2.499<span>60 kullanıcı · süresiz</span></div>
+      <ul><li>Team'deki her şey</li><li>60 koltuk</li><li>Öncelikli destek</li></ul>
+      <button class="btn line" data-buy="company"><span>Satın al</span></button></div>
+  </div>
+</section>
+
+<section id="indir">
+  <div class="sec-head rv"><p class="mono">05 — İndirmeler</p><h2>Sürüm <span data-version>1.0.0</span></h2></div>
+  <div class="dl-grid rv">
+    <a class="dl" data-dl="mac" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.3 12.9c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.1-2.8.9-3.5.9s-1.8-.8-3-.8c-1.5 0-2.9.9-3.7 2.3-1.6 2.7-.4 6.8 1.1 9 .8 1.1 1.7 2.3 2.9 2.2 1.2 0 1.6-.7 3-.7s1.8.7 3 .7 2-1.1 2.8-2.2c.9-1.2 1.2-2.4 1.2-2.5 0 0-2.4-.9-2.4-3.6zM14.1 5.9c.6-.8 1.1-1.9 1-3-.9 0-2.1.6-2.8 1.4-.6.7-1.2 1.8-1 2.9 1 .1 2.1-.5 2.8-1.3z"/></svg>
+      <b>macOS</b><span class="mono dl-file">.dmg · Apple Silicon</span></a>
+    <a class="dl" data-dl="windows" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5.8 10.2 4.8V11H3zM11.4 4.6 21 3.3V11h-9.6zM3 12.2h7.2v6.2L3 17.4zM11.4 12.2H21v7.7l-9.6-1.3z"/></svg>
+      <b>Windows</b><span class="mono dl-file">.exe · 64 bit</span></a>
+    <a class="dl" data-dl="linux" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.6c2.4 0 3.6 1.9 3.6 4.4 0 1.7.6 2.6 1.6 4.1 1.2 1.8 2.4 3.4 2.4 5.3 0 2.3-1.7 3.9-3.5 3.6-1-.2-1.4-.9-2.1-.9h-4c-.7 0-1.1.7-2.1.9-1.8.3-3.5-1.3-3.5-3.6 0-1.9 1.2-3.5 2.4-5.3 1-1.5 1.6-2.4 1.6-4.1 0-2.5 1.2-4.4 3.6-4.4z"/></svg>
+      <b>Linux</b><span class="mono dl-file">.bin · 64 bit</span></a>
+  </div>
+  <p class="lead rv" style="margin-top:22px;font-size:var(--t-small)" data-dlnote></p>
+</section>
+
+<section id="sss">
+  <div class="sec-head rv"><p class="mono">06 — SSS</p><h2>Sık sorulanlar</h2></div>
   <div class="rv">
-    <p class="mono">Akıllı Yazılım / AI / Otomasyon</p>
-    <h1 class="hero-title">WAESNA</h1>
-    <p class="hero-desc">Netlik, performans ve geleceğe hazır olma üzerine mühendislik yapılmış akıllı sistemler.</p>
-    <div class="hero-meta mono">
-      <span>Kurulabilir ürünler</span>
-      <span>Yerel öncelikli</span>
-      <span>Türkiye</span>
-    </div>
-  </div>
-  <div class="hero-aside rv">
-    <svg class="hero-mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 319 226" fill="currentColor" fill-rule="evenodd" role="img" aria-label="WAESNA amblemi"><path d="M 318.75 16.75 L 225.00 16.75 L 202.00 57.00 L 215.25 85.75 L 242.25 39.75 L 273.75 41.00 L 199.75 170.75 L 159.00 105.00 L 120.25 171.75 L 44.00 41.00 L 73.50 40.00 L 101.25 87.25 L 115.75 58.50 L 92.25 17.25 L 0.00 18.50 L 118.00 225.75 L 159.50 154.25 L 201.00 223.50 Z M 159.75 0.00 L 102.00 108.50 L 116.00 133.25 L 158.75 59.75 L 196.25 125.50 L 211.00 100.75 Z"/></svg>
-    <p class="mono">WAESNA · Engineered Intelligence</p>
-  </div>
-</section>
-
-<!-- ══════════ ÜRÜNLER ══════════ -->
-<section id="products">
-  <div class="sec-head rv">
-    <p class="mono">01 — Ürünlerimiz</p>
-    <h2 class="sec-title">Gerçek sorunlar için
-gerçek araçlar.</h2>
-  </div>
-
-  <div class="products">
-
-    <!-- ───── VoyagerOne ───── -->
-    <article class="card rv">
-      <div class="card-top">
-        <span class="mono">01 / AI Workstation</span>
-        <span class="badge">Amiral gemisi</span>
-      </div>
-
-      <div class="prod-head">
-        <span class="prod-icon">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M12 2.6 20.4 7v10L12 21.4 3.6 17V7z"/>
-            <path d="M8 9.4 12 15l4-5.6"/>
-          </svg>
-        </span>
-        <div>
-          <h3 class="prod-name">VoyagerOne</h3>
-          <p class="prod-sub mono">Unlimited Code Solutions</p>
-        </div>
-      </div>
-
-      <p class="prod-desc">
-        72 uzman yapay zeka ajanı, planlayıcı ve beş katmanlı kalite denetimiyle çalışan
-        masaüstü AI workstation'ı. Kod yaz, planla, araştır, belge üret — sohbetlerin ve
-        dosyaların makinende kalır, bulut hesabı yoktur.
-      </p>
-
-      <ul class="feat">
-        <li>72 ajan · planlayıcı + orkestrasyon katmanı</li>
-        <li>Her cevap 5 bağımsız kalite kapısından geçer</li>
-        <li>Kendi API anahtarın: Gemini, OpenAI (ve uyumlu uçlar) veya Anthropic Claude</li>
-        <li>Ollama ile tamamen çevrimdışı yerel model desteği</li>
-        <li>Sesli asistan ve mesajları sesli okuma — yerel, çevrimdışı</li>
-        <li>Word · Excel · PowerPoint · PDF · SVG · 3D çıktı üretimi</li>
-        <li>Kod tuvali: çalıştır, paket kur, canlı önizle</li>
-        <li>Windows · macOS · Linux · Türkçe ve İngilizce arayüz</li>
-      </ul>
-
-      <div class="price-row">
-        <span class="price" data-price="voyagerone">₺1.290</span>
-        <span class="price-meta"><span>Tek seferlik ödeme</span><span>Süresiz lisans</span></span>
-      </div>
-      <p class="mono note" data-note="voyagerone">Tek seferlik · süresiz lisans</p>
-
-      <button class="btn" data-buy="voyagerone">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        <span>Satın Al</span>
-      </button>
-    </article>
-
-    <!-- ───── Appify ───── -->
-    <article class="card rv">
-      <div class="card-top">
-        <span class="mono">02 / App Builder</span>
-      </div>
-
-      <div class="prod-head">
-        <span class="prod-icon">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <rect x="3" y="3" width="7" height="7" rx="1.6"/>
-            <rect x="14" y="3" width="7" height="7" rx="1.6"/>
-            <rect x="3" y="14" width="7" height="7" rx="1.6"/>
-            <path d="M17.5 14v7M14 17.5h7"/>
-          </svg>
-        </span>
-        <div>
-          <h3 class="prod-name">Appify</h3>
-          <p class="prod-sub mono">macOS App Builder</p>
-        </div>
-      </div>
-
-      <p class="prod-desc">
-        Python projelerini birkaç adımda yerel bir macOS uygulamasına dönüştüren masaüstü
-        aracı. .app paketi oluştur, imzala, dağıt — PyInstaller konfigürasyonuyla
-        uğraşmadan.
-      </p>
-
-      <ul class="feat">
-        <li>Sürükle-bırak proje kurulumu</li>
-        <li>Tek tıkla .app paketi oluşturma</li>
-        <li>Özel ikon ve metadata desteği</li>
-        <li>macOS code signing entegrasyonu</li>
-        <li>PyInstaller tabanlı, öngörülebilir çıktı</li>
-      </ul>
-
-      <div class="price-row">
-        <span class="price" data-price="appify">₺490</span>
-        <span class="price-meta"><span>Tek seferlik ödeme</span><span>Süresiz lisans</span></span>
-      </div>
-      <p class="mono note" data-note="appify">Tek seferlik · süresiz lisans</p>
-
-      <button class="btn ghost" data-buy="appify">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        <span>Satın Al</span>
-      </button>
-    </article>
-
+    <details><summary>Verilerim nereye gidiyor?</summary>
+      <p>Sohbetler, projeler ve ürettiğin dosyalar yalnızca bu bilgisayarda saklanır. Yerel model (Ollama) kullanırsan mesajların cihazdan hiç çıkmaz. Bulut sağlayıcı seçersen mesajların yanıt üretmek için o sağlayıcıya gider; uygulama bunu açıkça söyler.</p></details>
+    <details><summary>Lisans kaç cihazda çalışır?</summary>
+      <p>Pro lisansı bir kullanıcı içindir. Anahtar e-postana tanımlanır ve çevrimdışı doğrulanır; etkinleştirmek için internet gerekmez. Team ve Company planlarında koltuk sayısı kadar kullanıcı tanımlanır.</p></details>
+    <details><summary>Uygulama internetsiz çalışır mı?</summary>
+      <p>Evet. Ollama ile yerel model kullanıldığında sohbet, belge üretimi ve dikte tamamen çevrimdışı çalışır. İnternet yalnızca ilk kurulumda, bulut modeli kullanıldığında ve web araması açıkken gerekir.</p></details>
+    <details><summary>macOS'ta “bilinmeyen geliştirici” uyarısı alıyorum.</summary>
+      <p>Uygulama henüz Apple tarafından imzalanmadı. Sistem Ayarları → Gizlilik ve Güvenlik bölümünde “Yine de Aç” demen yeterli; bunu bir kez yapman gerekiyor. İmzalı sürüm hazırlanıyor.</p></details>
+    <details><summary>Yapay zekânın verdiği cevaplara güvenebilir miyim?</summary>
+      <p>Cevaplar otomatik üretilir ve hatalı olabilir. Önemli kararlardan önce doğrula. Uygulama, komut çalıştırma ve dosya değiştirme gibi geri alınamaz işlemler için her seferinde onayını ister.</p></details>
+    <details><summary>Güncellemeler ücretli mi?</summary>
+      <p>Hayır. Lisans süresizdir ve 1.x sürüm güncellemeleri ücretsizdir. Uygulama açılışta yeni sürüm olup olmadığını kontrol eder.</p></details>
   </div>
 </section>
 
-<!-- ══════════ SİSTEMLER ══════════ -->
-<section id="systems">
-  <div class="sec-head rv">
-    <p class="mono">02 — Sistemler</p>
-    <h2 class="sec-title">Teknoloji deneyimin içinde
-kaybolmalı.</h2>
-  </div>
-  <div class="grid-3">
-    <article class="tile rv"><p class="mono">01 / AI</p>
-      <h3>Akıllı Yazılım</h3>
-      <p>Gerçek iş akışları, kullanışlı bağlam ve ölçülebilir sonuçlar etrafında tasarlanmış AI sistemleri.</p></article>
-    <article class="tile rv"><p class="mono">02 / Otomasyon</p>
-      <h3>Otomasyon</h3>
-      <p>Süreçleri, verileri ve kararları birbirine bağla; tekrarlayan işleri ortadan kaldır.</p></article>
-    <article class="tile rv"><p class="mono">03 / Yazılım</p>
-      <h3>Dijital Sistemler</h3>
-      <p>Ürünler büyüdükçe hızlı, kesin ve sürdürülebilir kalan sağlam yazılım temelleri.</p></article>
-  </div>
+<section id="iletisim">
+  <div class="sec-head rv"><p class="mono">07 — İletişim</p><h2>Soru ve destek</h2></div>
+  <p class="lead rv">Lisans, fatura ve teknik destek için doğrudan yazabilirsin. Genellikle aynı gün içinde dönüş yapılır.</p>
+  <p class="rv" style="margin-top:18px"><a class="btn line" id="mailLink" href="#">E-posta gönder</a></p>
 </section>
-
-<!-- ══════════ FELSEFE ══════════ -->
-<section>
-  <div class="sec-head rv">
-    <p class="mono">03 — Felsefe</p>
-    <h2 class="sec-title">Daha az gürültü.
-Daha fazla sinyal.</h2>
-  </div>
-  <p class="statement rv">Teknolojiyi <span class="muted">önce problem</span> etrafında inşa ediyoruz. Trende göre değil.</p>
-</section>
-
-<!-- ══════════ YAKLAŞIM ══════════ -->
-<section id="approach">
-  <div class="sec-head rv">
-    <p class="mono">04 — Yaklaşım</p>
-    <h2 class="sec-title">Hassasiyet süsleme değil.
-Ürünün kendisi.</h2>
-  </div>
-  <div class="grid-2">
-    <article class="tile rv"><p class="mono">01 / Anla</p>
-      <h3>Problemle başla.</h3><p>Teknolojiyi tanıtmadan önce karmaşıklığı azaltıyoruz.</p></article>
-    <article class="tile rv"><p class="mono">02 / Tasarla</p>
-      <h3>Sistemi mühendisle.</h3><p>Mimari, arayüzler ve zekâ tek bir tutarlı sistem olarak tasarlanıyor.</p></article>
-    <article class="tile rv"><p class="mono">03 / İnşa Et</p>
-      <h3>Güvenilir yap.</h3><p>Performans ve sürdürülebilirlik, etkileyici ilk gösterim kadar önemli.</p></article>
-    <article class="tile rv"><p class="mono">04 / Geliştir</p>
-      <h3>Sıradaki için inşa et.</h3><p>Her sistem daha büyük bir şeye dönüşebilecek alana sahip olmalı.</p></article>
-  </div>
-</section>
-
-<!-- ══════════ İLETİŞİM ══════════ -->
-<section id="contact">
-  <div class="sec-head rv">
-    <p class="mono">05 — İletişim</p>
-    <h2 class="sec-title">Kalıcı bir şey
-inşa edin.</h2>
-  </div>
-
-  <div class="contact-wrap">
-    <div class="rv">
-      <p class="contact-lead">AI, yazılım, otomasyon ve akıllı sistemler için WAESNA ile iletişime geçin. Ürünler hakkında soruların varsa doğrudan yazabilirsin.</p>
-      <div class="direct">
-        <a href="mailto:hello@waesna.com" id="mailLink">hello@waesna.com</a>
-      </div>
-    </div>
-
-    <form class="rv" id="contactForm" novalidate>
-      <div class="field">
-        <label class="mono" for="cf-name">Ad</label>
-        <input id="cf-name" name="name" type="text" autocomplete="name" required maxlength="80">
-      </div>
-      <div class="field">
-        <label class="mono" for="cf-email">E-posta</label>
-        <input id="cf-email" name="email" type="email" autocomplete="email" required maxlength="120">
-      </div>
-      <div class="field">
-        <label class="mono" for="cf-msg">Mesaj</label>
-        <textarea id="cf-msg" name="message" required maxlength="3000"></textarea>
-      </div>
-      <button class="btn" type="submit" id="cf-submit">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        <span>Gönder</span>
-      </button>
-      <p class="form-status mono" id="cf-status" role="status" aria-live="polite"></p>
-    </form>
-  </div>
-</section>
-
-</main>
 
 <footer>
-  <span class="mono">© <span id="year">2026</span> WAESNA</span>
-  <svg class="foot-mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 319 226" fill="currentColor" fill-rule="evenodd" role="img" aria-hidden="true" focusable="false" aria-label="WAESNA"><path d="M 318.75 16.75 L 225.00 16.75 L 202.00 57.00 L 215.25 85.75 L 242.25 39.75 L 273.75 41.00 L 199.75 170.75 L 159.00 105.00 L 120.25 171.75 L 44.00 41.00 L 73.50 40.00 L 101.25 87.25 L 115.75 58.50 L 92.25 17.25 L 0.00 18.50 L 118.00 225.75 L 159.50 154.25 L 201.00 223.50 Z M 159.75 0.00 L 102.00 108.50 L 116.00 133.25 L 158.75 59.75 L 196.25 125.50 L 211.00 100.75 Z"/></svg>
-  <span class="mono">Akıllı sistemler, özenle mühendislik.</span>
+  <span>© <span id="year">2026</span> WAESNA · VoyagerOne</span>
+  <span><a href="privacy.html">Gizlilik ve KVKK</a> · <a href="terms.html">Kullanım Koşulları</a> · <a id="mailFoot" href="#"></a></span>
 </footer>
 
 <script>
-/* ══════════════════════════════════════════════════════════════
-   WAESNA — AYAR BLOĞU
-   Tek değiştirmen gereken yer burası. Kaydet, commit'le, push'la.
-
-   ÖNEMLİ: Bu site GitHub Pages'te HERKESE AÇIK bir depodan yayınlanır.
-   Buraya SADECE herkese açık olması sorun olmayan değerler yazılır.
-   Ödeme sağlayıcısının GİZLİ (secret) anahtarını buraya ASLA yazma —
-   aşağıdaki ödeme alanları gizli anahtar değil, ürün LİNKİ bekler.
-══════════════════════════════════════════════════════════════ */
+/* ═══════════ AYARLAR — tek düzenleme noktası ═══════════
+   buy:       ödeme sağlayıcısında (Gumroad, Lemon Squeezy, Payhip…) ürünü
+              oluşturunca aldığın HERKESE AÇIK ödeme adresi.
+   downloads: GitHub Releases dosya adresleri.
+   Boş bırakılan alan kırık görünmez: satın alma düğmesi e-postaya döner,
+   indirme kartı "yakında" olur.
+   ⚠️ Bu dosya herkese açıktır. Gizli API anahtarı / secret ASLA yazma. */
 const CONFIG = {
-  email: "hello@waesna.com",
-
-  /* Ödeme linkleri — Gumroad / Payhip / Lemon Squeezy gibi bir serviste
-     ürünü oluşturunca sana verilen herkese açık ürün adresini yapıştır.
-     Boş bırakırsan düğme "yakında" moduna düşer ve e-postaya yönlendirir. */
-  buy: {
-    voyagerone: "",
-    appify: ""
-  },
-
-  /* İletişim formu — statik sitede sunucu olmadığı için bir form servisi gerekir.
-     Web3Forms kullanacaksan: access key'i buraya yaz (bu anahtar zaten herkese
-     açık olacak şekilde tasarlanmıştır, formun HTML'inde durur).
-     Formspree kullanacaksan: formEndpoint alanına form adresini yaz.
-     İkisi de boşsa form kendini gizler, e-posta bağlantısı görünür. */
-  web3formsKey: "",
-  formEndpoint: ""
+  email: "voyageroneai@gmail.com",
+  version: "1.0.0",
+  buy: { pro: "", team: "", company: "" },
+  downloads: { mac: "", windows: "", linux: "" }
 };
 
-/* ── yıl ── */
-document.getElementById("year").textContent = new Date().getFullYear();
-
-/* ── e-posta ── */
-document.querySelectorAll('a[href^="mailto:"]').forEach(a=>{
-  a.href = "mailto:" + CONFIG.email;
-  if(a.id === "mailLink") a.textContent = CONFIG.email;
-});
-
-/* ── nav gölgesi ── */
-const nav = document.getElementById("nav");
-const onScroll = () => nav.classList.toggle("scrolled", window.scrollY > 8);
-onScroll(); addEventListener("scroll", onScroll, {passive:true});
-
-/* ── scroll reveal ── */
-const io = new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } });
-}, {threshold:.12, rootMargin:"0px 0px -8% 0px"});
-document.querySelectorAll(".rv").forEach(el=>io.observe(el));
-
-/* ── satın alma ── */
+/* satın alma */
 document.querySelectorAll("[data-buy]").forEach(btn=>{
   const key = btn.dataset.buy;
   const url = (CONFIG.buy[key] || "").trim();
-  const note = document.querySelector(`[data-note="${key}"]`);
-  if(url && /^https:\/\//i.test(url)){
-    btn.addEventListener("click", ()=>{ window.open(url, "_blank", "noopener,noreferrer"); });
+  if(/^https:\/\//i.test(url)){
+    btn.addEventListener("click", ()=> window.open(url,"_blank","noopener,noreferrer"));
   }else{
-    /* Ödeme henüz bağlanmadıysa kırık bir akış göstermek yerine dürüst ol. */
-    btn.querySelector("span").textContent = "Bilgi Al";
-    if(note) note.textContent = "Satın alma yakında · şimdilik e-posta ile";
+    btn.querySelector("span").textContent = "Bilgi al";
     btn.addEventListener("click", ()=>{
-      location.href = "mailto:" + CONFIG.email +
-        "?subject=" + encodeURIComponent(key === "voyagerone" ? "VoyagerOne satın alma" : "Appify satın alma");
+      location.href = "mailto:"+CONFIG.email+"?subject="+encodeURIComponent("VoyagerOne "+key+" lisansı");
     });
   }
 });
 
-/* ── iletişim formu ── */
-const form = document.getElementById("contactForm");
-const statusEl = document.getElementById("cf-status");
-const submitBtn = document.getElementById("cf-submit");
+/* indirmeler */
+(function(){
+  let ready = 0;
+  document.querySelectorAll("[data-dl]").forEach(a=>{
+    const url = (CONFIG.downloads[a.dataset.dl] || "").trim();
+    if(/^https:\/\//i.test(url)){ a.href = url; ready++; }
+    else{ a.setAttribute("aria-disabled","true"); a.querySelector(".dl-file").textContent = "yakında"; }
+  });
+  document.querySelector("[data-version]").textContent = CONFIG.version;
+  const note = document.querySelector("[data-dlnote]");
+  note.textContent = ready
+    ? "macOS sürümü henüz Apple tarafından imzalanmadı: ilk açılışta Sistem Ayarları → Gizlilik ve Güvenlik bölümünden “Yine de Aç” demen gerekebilir."
+    : "İndirme bağlantıları sürüm yayınlandığında burada görünecek.";
+})();
 
-if(!CONFIG.web3formsKey && !CONFIG.formEndpoint){
-  form.style.display = "none";     // yapılandırılmadıysa çalışmayan form gösterme
-}
+/* e-posta */
+const mail = "mailto:"+CONFIG.email;
+mailLink.href = mail; mailFoot.href = mail; mailFoot.textContent = CONFIG.email;
+year.textContent = new Date().getFullYear();
 
-form.addEventListener("submit", async (e)=>{
-  e.preventDefault();
-  statusEl.className = "form-status mono";
-  const data = Object.fromEntries(new FormData(form).entries());
-  if(!data.name?.trim() || !data.email?.trim() || !data.message?.trim()){
-    statusEl.textContent = "Lütfen tüm alanları doldur."; statusEl.classList.add("err"); return;
-  }
-  submitBtn.disabled = true;
-  statusEl.textContent = "Gönderiliyor…";
-  try{
-    let res;
-    if(CONFIG.web3formsKey){
-      res = await fetch("https://api.web3forms.com/submit", {
-        method:"POST", headers:{"Content-Type":"application/json", Accept:"application/json"},
-        body: JSON.stringify({ access_key: CONFIG.web3formsKey, subject:"WAESNA — yeni mesaj", ...data })
-      });
-    }else{
-      res = await fetch(CONFIG.formEndpoint, {
-        method:"POST", headers:{Accept:"application/json"}, body:new FormData(form)
-      });
-    }
-    if(res.ok){
-      form.reset();
-      statusEl.textContent = "Teşekkürler — mesajın ulaştı.";
-      statusEl.classList.add("ok");
-    }else{
-      throw new Error("HTTP " + res.status);
-    }
-  }catch(err){
-    statusEl.textContent = "Gönderilemedi. " + CONFIG.email + " adresine yazabilirsin.";
-    statusEl.classList.add("err");
-  }finally{
-    submitBtn.disabled = false;
-  }
-});
+/* nav çizgisi + tek ölçülü giriş animasyonu */
+const nav = document.getElementById("nav");
+addEventListener("scroll", ()=> nav.classList.toggle("on", scrollY > 8), {passive:true});
+const io = new IntersectionObserver((es)=>es.forEach(e=>{
+  if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); }
+}), {rootMargin:"0px 0px -10% 0px"});
+document.querySelectorAll(".rv").forEach(el=>io.observe(el));
 </script>
 </body>
 </html>
