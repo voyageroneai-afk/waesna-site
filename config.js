@@ -31,8 +31,8 @@ const CONFIG = {
   /* İNDİRME LİNKLERİ ─────────────────────────────────────────────────
      Boş bırakılan platform "yakında" olarak görünür.                    */
   downloads: {
-    mac:     "https://voyageroneai-afk.github.io/waesna-site/downloads/VoyagerOne-1.0.0-macOS.dmg",
-    windows: "https://voyageroneai-afk.github.io/waesna-site/downloads/VoyagerOne-1.0.0-Windows.zip",
-    linux:   "https://voyageroneai-afk.github.io/waesna-site/downloads/VoyagerOne-1.0.0-Linux.tar.gz"
+    mac:     "https://waesna.github.io/downloads/VoyagerOne-1.0.0-macOS.dmg",
+    windows: "https://waesna.github.io/downloads/VoyagerOne-1.0.0-Windows.zip",
+    linux:   "https://waesna.github.io/downloads/VoyagerOne-1.0.0-Linux.tar.gz"
   }
 };
