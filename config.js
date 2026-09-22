@@ -32,7 +32,7 @@ const CONFIG = {
      Satın alma linki boş olan planlarda "Talep oluştur" formu açılır ve
      talep bu adrese (senin Google Apps Script'in) gider. Admin panelindeki
      Yayınla düğmesi bunu kendisi doldurur.                              */
-  requestUrl: "",
+  requestUrl: "https://script.google.com/macros/s/AKfycbx4iYgV_EJHtDxMAcmSyUD7iq29gp2q2mlJt8W7FpAj3gjqkat5eIccLRpPashUd4bK/exec",
 
   /* İNDİRME LİNKLERİ ─────────────────────────────────────────────────
      Boş bırakılan platform "yakında" olarak görünür.                    */
