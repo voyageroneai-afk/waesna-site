@@ -3,150 +3,169 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>WAESNA — VoyagerOne masaüstü yapay zekâ çalışma alanı</title>
-<meta name="description" content="VoyagerOne; macOS, Windows ve Linux için masaüstü yapay zekâ çalışma alanı. Yerel modelle çevrimdışı çalışır, belge üretir, onayınla komut çalıştırır. Sohbetler ve dosyalar cihazında kalır.">
+<title>VoyagerOne — Bilgisayarında çalışan yapay zekâ · WAESNA</title>
+<meta name="description" content="VoyagerOne; macOS, Windows ve Linux için yapay zekâ çalışma alanı. Yerel modelle internetsiz çalışır, Word/Excel/PDF üretir, abonelik yok.">
 <meta name="theme-color" content="#F7F4EE">
 <link rel="canonical" href="https://waesna.github.io/">
-
 <meta property="og:type" content="website">
-<meta property="og:title" content="VoyagerOne — masaüstü yapay zekâ çalışma alanı">
-<meta property="og:description" content="Yerel modelle çevrimdışı çalışır, belge üretir, onayınla komut çalıştırır.">
+<meta property="og:title" content="VoyagerOne — AI that runs on your computer">
+<meta property="og:description" content="Works offline with a local model, creates Word/Excel/PDF files, no subscription.">
 <meta property="og:url" content="https://waesna.github.io/">
 <meta property="og:image" content="https://waesna.github.io/assets/og.png">
 <meta name="twitter:card" content="summary_large_image">
-
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600&family=Geist+Mono:wght@400;500&family=Geist:wght@400;500;600&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Geist+Mono:wght@400;500&family=Geist:wght@400;500;600&display=swap" rel="stylesheet">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Organization","name":"WAESNA",
- "url":"https://waesna.github.io/","logo":"https://waesna.github.io/assets/waesna-mark.png"}
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"VoyagerOne","operatingSystem":"macOS, Windows, Linux",
+ "applicationCategory":"ProductivityApplication","offers":{"@type":"Offer","price":"149","priceCurrency":"USD"},
+ "publisher":{"@type":"Organization","name":"WAESNA","url":"https://waesna.github.io/"}}
 </script>
-
 <style>
-/* ═══════════ TOKENS ═══════════ */
 :root{
   --paper:#F7F4EE; --raise:#FFFDF9; --ink:#17140F; --ink-2:#514B41; --ink-3:#8B8376;
-  --rule:#E4DCCE; --accent:#B97F3A; --accent-2:#D9A45E;
-  --display:"Bricolage Grotesque",Georgia,serif;
-  --body:"Geist","Helvetica Neue",Arial,sans-serif;
-  --mono:"Geist Mono",ui-monospace,Menlo,monospace;
-  --pad:clamp(20px,5vw,84px);
-  --ease:cubic-bezier(.2,.7,.3,1);
-  /* Tek tipografi ölçeği — her başlık bu adımlardan birini kullanır. */
-  --t-hero:clamp(38px,5.4vw,70px); --t-sec:clamp(27px,3vw,38px);
-  --t-card:19px; --t-body:16px; --t-small:14px; --t-mono:12px;
+  --rule:#E4DCCE; --accent:#B97F3A; --accent-2:#D9A45E; --good:#2F8F5B; --bad:#B4533A;
+  --display:"Bricolage Grotesque",Georgia,serif; --body:"Geist","Helvetica Neue",Arial,sans-serif; --mono:"Geist Mono",ui-monospace,Menlo,monospace;
+  --pad:clamp(20px,5vw,84px); --ease:cubic-bezier(.2,.7,.3,1);
+  --t-hero:clamp(40px,5.6vw,76px); --t-sec:clamp(28px,3.2vw,40px); --t-card:19px; --t-body:16px; --t-small:14px; --t-mono:12px;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme=light]){
   --paper:#111010; --raise:#191715; --ink:#F4F0E8; --ink-2:#B5AC9E; --ink-3:#847B6E; --rule:#2B2723;
 }}
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{background:var(--paper);color:var(--ink);font:var(--t-body)/1.65 var(--body);
-  -webkit-font-smoothing:antialiased;overflow-x:hidden}
+body{background:var(--paper);color:var(--ink);font:var(--t-body)/1.65 var(--body);-webkit-font-smoothing:antialiased;overflow-x:hidden}
 a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:3px}
 h1,h2,h3{font-family:var(--display);font-weight:600;letter-spacing:-.02em;line-height:1.05}
-h1{font-size:var(--t-hero)}h2{font-size:var(--t-sec)}h3{font-size:var(--t-card);letter-spacing:-.01em;line-height:1.25}
+h2{font-size:var(--t-sec)} h3{font-size:var(--t-card);letter-spacing:-.01em;line-height:1.25}
 .mono{font:500 var(--t-mono)/1.5 var(--mono);letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3)}
-section{padding:clamp(64px,9vw,132px) var(--pad);border-top:1px solid var(--rule)}
-.sec-head{display:grid;grid-template-columns:200px 1fr;gap:28px;margin-bottom:46px;align-items:start}
-.lead{color:var(--ink-2);max-width:60ch}
+section{padding:clamp(64px,9vw,128px) var(--pad);border-top:1px solid var(--rule)}
+.sec-head{display:grid;grid-template-columns:200px 1fr;gap:28px;margin-bottom:44px;align-items:start}
+.lead{color:var(--ink-2);max-width:62ch}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 22px;border-radius:2px;font-size:15px;font-weight:600;border:1px solid var(--ink);transition:.2s var(--ease)}
+.btn.solid{background:var(--ink);color:var(--paper)} .btn.solid:hover{background:var(--accent);border-color:var(--accent)}
+.btn.line:hover{background:var(--ink);color:var(--paper)}
 
-/* ═══════════ NAV ═══════════ */
-.nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;
-  gap:20px;padding:14px var(--pad);background:color-mix(in srgb,var(--paper) 88%,transparent);
-  backdrop-filter:blur(12px);border-bottom:1px solid transparent;transition:border-color .3s}
+/* nav */
+.nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:13px var(--pad);
+  background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid transparent;transition:border-color .3s}
 .nav.on{border-bottom-color:var(--rule)}
 .logo{display:flex;align-items:center;gap:11px;font:600 15px/1 var(--display);letter-spacing:.16em}
 .logo img{height:26px;width:auto;display:block}
 @media (prefers-color-scheme:dark){:root:not([data-theme=light]) .logo img{filter:invert(1)}}
-.nav-links{display:flex;gap:26px;font-size:var(--t-small);color:var(--ink-2)}
-.nav-links a:hover{color:var(--ink)}
-@media (max-width:760px){.nav-links{display:none}}
+.nav-links{display:flex;gap:24px;font-size:var(--t-small);color:var(--ink-2)} .nav-links a:hover{color:var(--ink)}
+.nav-r{display:flex;align-items:center;gap:14px}
+.lang{display:flex;border:1px solid var(--rule);border-radius:2px;overflow:hidden}
+.lang button{padding:7px 10px;font:500 12px/1 var(--mono);letter-spacing:.08em;color:var(--ink-3)}
+.lang button[aria-pressed=true]{background:var(--ink);color:var(--paper)}
+@media (max-width:860px){.nav-links{display:none}.nav .btn{display:none}}
 
-/* ═══════════ HERO ═══════════ */
-.hero{display:grid;grid-template-columns:1.25fr .75fr;gap:clamp(30px,5vw,70px);align-items:center;
-  padding:clamp(48px,8vw,104px) var(--pad) clamp(56px,8vw,112px);border-top:0}
-.hero p.lead{font-size:18px;margin:20px 0 32px}
-.hero .kicker{margin-bottom:20px}
-.vmark{justify-self:center;width:min(300px,64vw)}
-.vmark svg{width:100%;height:auto;display:block}
+/* hero */
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(30px,5vw,72px);align-items:center;padding:clamp(40px,7vw,96px) var(--pad) clamp(48px,7vw,96px);border-top:0}
+.hero h1{font-size:var(--t-hero);font-weight:700;letter-spacing:-.03em}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero .lead{font-size:18px;margin:22px 0 30px}
 .cta{display:flex;gap:12px;flex-wrap:wrap}
-.btn{display:inline-flex;align-items:center;gap:9px;padding:12px 20px;border-radius:2px;
-  font-size:15px;font-weight:500;border:1px solid var(--ink);transition:.2s var(--ease)}
-.btn.solid{background:var(--ink);color:var(--paper)}
-.btn.solid:hover{background:var(--accent);border-color:var(--accent)}
-.btn.line:hover{background:var(--ink);color:var(--paper)}
-.facts{display:flex;gap:26px;flex-wrap:wrap;margin-top:34px;padding-top:22px;border-top:1px solid var(--rule)}
-.facts div{font-size:var(--t-small);color:var(--ink-2)}
-.facts b{display:block;font:600 22px/1.2 var(--display);color:var(--ink)}
+.trust{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:30px;padding-top:22px;border-top:1px solid var(--rule);font-size:var(--t-small);color:var(--ink-2)}
+.trust span::before{content:"✓";color:var(--good);font-weight:700;margin-right:7px}
 
-/* ═══════════ GRIDS ═══════════ */
+/* demo kartı */
+.demo{background:#0F1726;color:#EAF1FF;border-radius:18px;padding:0 0 22px;box-shadow:0 30px 80px rgba(23,20,15,.18);overflow:hidden;font-size:15px}
+.demo-bar{display:flex;align-items:center;gap:8px;padding:14px 18px;border-bottom:1px solid #22314D;font:500 12px/1 var(--mono);color:#8EA0BF}
+.demo-bar i{width:10px;height:10px;border-radius:50%;background:#2E3D5C}
+.demo-bar b{margin-left:8px;font-weight:500}
+.msg{margin:16px 18px 0;padding:12px 16px;border-radius:14px;max-width:86%;line-height:1.4;opacity:0}
+.msg.u{margin-left:auto;background:#2A3E63;border-bottom-right-radius:4px}
+.msg.a{background:#15213A;border:1px solid #22314D;border-bottom-left-radius:4px}
+.file{display:flex;align-items:center;gap:12px;margin-top:10px;padding:10px 12px;border-radius:10px;background:rgba(62,224,161,.1);border:1px solid rgba(62,224,161,.35)}
+.file i{width:34px;height:40px;border-radius:6px;display:grid;place-items:center;font:600 10px/1 var(--mono);color:#0B1322;font-style:normal}
+.file b{display:block;font:500 14px/1.2 var(--mono)} .file span{font:400 12px/1.2 var(--mono);color:#3EE0A1}
+@keyframes show{to{opacity:1}}
+.demo .m1{animation:show .4s var(--ease) .4s forwards}
+.demo .m2{animation:show .4s var(--ease) 1.4s forwards}
+.demo .m3{animation:show .4s var(--ease) 2.6s forwards}
+.demo .m4{animation:show .4s var(--ease) 3.6s forwards}
+@media (prefers-reduced-motion:reduce){.demo .msg{animation:none;opacity:1}}
+
+/* sorun şeridi */
+.pain{background:var(--ink);color:var(--paper);border-top:0}
+.pain .mono{color:var(--accent-2)}
+.pain-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#2E2A24;margin:26px 0 30px;border:1px solid #2E2A24}
+.pain-grid div{background:var(--ink);padding:26px 22px;font:600 20px/1.3 var(--display)}
+.pain-grid div::before{content:"✕";display:block;color:var(--bad);font:700 16px/1 var(--mono);margin-bottom:14px}
+.pain-fix{font:600 clamp(22px,2.4vw,30px)/1.25 var(--display);color:var(--accent-2)}
+@media (max-width:860px){.pain-grid{grid-template-columns:1fr 1fr}}
+
+/* ızgaralar */
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule)}
 .cell{background:var(--raise);padding:28px 26px;display:flex;flex-direction:column;gap:9px}
-.cell p{color:var(--ink-2);font-size:15px}
-.cell .mono{margin-bottom:6px;color:var(--accent)}
-@media (max-width:900px){.grid{grid-template-columns:1fr}}
+.cell p{color:var(--ink-2);font-size:15px} .cell .mono{margin-bottom:6px;color:var(--accent)}
 
-/* adımlar */
-.steps{counter-reset:s;display:grid;gap:1px;background:var(--rule);border:1px solid var(--rule)}
-.step{background:var(--raise);padding:26px;display:grid;grid-template-columns:52px 1fr;gap:20px;align-items:start}
-.step::before{counter-increment:s;content:counter(s,decimal-leading-zero);
-  font:500 var(--t-mono)/1 var(--mono);color:var(--accent);padding-top:5px}
-.step p{color:var(--ink-2);font-size:15px;margin-top:5px}
+/* karşılaştırma */
+.cmp{width:100%;border-collapse:collapse;border:1px solid var(--rule);background:var(--raise);font-size:15px}
+.cmp th,.cmp td{padding:16px 20px;border-top:1px solid var(--rule);text-align:left;vertical-align:top}
+.cmp thead th{border-top:0;font:500 var(--t-mono)/1.4 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+.cmp thead th:last-child{color:var(--accent)}
+.cmp td:first-child{color:var(--ink-3);width:28%}
+.cmp td:nth-child(2){color:var(--ink-2)}
+.cmp td:last-child{font-weight:600;background:color-mix(in srgb,var(--accent) 7%,transparent)}
+.cmp-note{margin-top:14px;font-size:13px;color:var(--ink-3)}
 
-/* teknik tablo */
+/* adımlar, teknik */
+.steps{counter-reset:s;display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule)}
+.step{background:var(--raise);padding:26px}
+.step::before{counter-increment:s;content:counter(s,decimal-leading-zero);display:block;font:500 var(--t-mono)/1 var(--mono);color:var(--accent);margin-bottom:16px}
+.step p{color:var(--ink-2);font-size:15px;margin-top:6px}
 .spec{border:1px solid var(--rule)}
 .spec div{display:grid;grid-template-columns:230px 1fr;gap:18px;padding:15px 22px;border-top:1px solid var(--rule);font-size:15px}
-.spec div:first-child{border-top:0}
-.spec dt{color:var(--ink-3);font-size:var(--t-small)}
-.spec dd{color:var(--ink-2)}
-@media (max-width:700px){.spec div{grid-template-columns:1fr;gap:4px}}
+.spec div:first-child{border-top:0} .spec dt{color:var(--ink-3);font-size:var(--t-small)} .spec dd{color:var(--ink-2)}
 
 /* fiyat */
 .plans{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule)}
 .plan{background:var(--raise);padding:28px 24px;display:flex;flex-direction:column;gap:12px}
-.plan.hl{background:var(--paper);box-shadow:inset 0 0 0 1px var(--accent)}
+.plan.hl{background:var(--paper);box-shadow:inset 0 0 0 2px var(--accent)}
 .price{font:600 34px/1 var(--display);letter-spacing:-.02em}
 .price span{font:400 13px/1 var(--body);color:var(--ink-3);display:block;margin-top:7px}
-.plan ul{list-style:none;display:flex;flex-direction:column;gap:7px;font-size:var(--t-small);color:var(--ink-2);margin-top:2px}
+.plan ul{list-style:none;display:flex;flex-direction:column;gap:7px;font-size:var(--t-small);color:var(--ink-2)}
 .plan li::before{content:"—";color:var(--accent);margin-right:8px}
-.plan .btn{margin-top:auto;justify-content:center}
-@media (max-width:980px){.plans{grid-template-columns:1fr 1fr}}
-@media (max-width:560px){.plans{grid-template-columns:1fr}}
+.plan .btn{margin-top:auto}
 
 /* indirme */
 .dl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule)}
-.dl{background:var(--raise);padding:28px 26px;display:flex;flex-direction:column;gap:8px;transition:.2s var(--ease)}
-.dl svg{width:26px;height:26px;fill:currentColor}
-.dl b{font-size:17px;font-weight:600}
+.dl{position:relative;background:var(--raise);padding:28px 26px;display:flex;flex-direction:column;gap:8px;transition:.2s var(--ease)}
+.dl svg{width:26px;height:26px;fill:currentColor} .dl b{font-size:17px;font-weight:600}
 .dl:hover{background:var(--ink);color:var(--paper)}
-.dl[aria-disabled=true]{opacity:.45}
-.dl[aria-disabled=true]:hover{background:var(--raise);color:inherit}
-@media (max-width:900px){.dl-grid{grid-template-columns:1fr}}
+.dl.mine{box-shadow:inset 0 0 0 2px var(--accent)}
+.dl .yours{position:absolute;top:14px;right:14px;font:500 11px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;background:var(--accent);color:#fff;padding:5px 8px;border-radius:2px}
+.dl[aria-disabled=true]{opacity:.45} .dl[aria-disabled=true]:hover{background:var(--raise);color:inherit}
 
 /* sss */
-details{border-top:1px solid var(--rule);padding:16px 0}
-details:last-of-type{border-bottom:1px solid var(--rule)}
+details{border-top:1px solid var(--rule);padding:16px 0} details:last-of-type{border-bottom:1px solid var(--rule)}
 summary{cursor:pointer;font-weight:500;list-style:none;display:flex;justify-content:space-between;gap:20px}
 summary::-webkit-details-marker{display:none}
-summary::after{content:"+";color:var(--accent);font-family:var(--mono)}
-details[open] summary::after{content:"–"}
-details p{color:var(--ink-2);font-size:15px;margin-top:10px;max-width:70ch}
+summary::after{content:"+";color:var(--accent);font-family:var(--mono)} details[open] summary::after{content:"–"}
+details p{color:var(--ink-2);font-size:15px;margin-top:10px;max-width:72ch}
 
-footer{padding:34px var(--pad) 56px;border-top:1px solid var(--rule);display:flex;
-  justify-content:space-between;gap:18px;flex-wrap:wrap;font-size:13px;color:var(--ink-3)}
+footer{padding:34px var(--pad) 90px;border-top:1px solid var(--rule);display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;font-size:13px;color:var(--ink-3)}
 
-/* tek ve ölçülü hareket: bölümler görünürken hafifçe belirir */
-.rv{opacity:0;transform:translateY(14px);transition:opacity .5s var(--ease),transform .5s var(--ease)}
-.rv.in{opacity:1;transform:none}
+/* mobilde sabit alt çağrı */
+.sticky{position:fixed;left:12px;right:12px;bottom:12px;z-index:60;display:none;justify-content:center;padding:15px;border-radius:12px;
+  background:var(--ink);color:var(--paper);font-weight:600;box-shadow:0 10px 30px rgba(0,0,0,.25);transform:translateY(130%);visibility:hidden;transition:transform .3s var(--ease),visibility .3s}
+.sticky.show{transform:none;visibility:visible}
+@media (max-width:860px){.sticky{display:flex}}
+
+.rv{opacity:0;transform:translateY(14px);transition:opacity .5s var(--ease),transform .5s var(--ease)} .rv.in{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
-@media (max-width:900px){.hero{grid-template-columns:1fr}.vmark{display:none}.sec-head{grid-template-columns:1fr;gap:14px;margin-bottom:32px}}
+@media (max-width:900px){
+  .hero{grid-template-columns:1fr}.sec-head{grid-template-columns:1fr;gap:12px;margin-bottom:30px}
+  .grid,.steps,.dl-grid{grid-template-columns:1fr}.plans{grid-template-columns:1fr 1fr}
+  .spec div{grid-template-columns:1fr;gap:4px}.cmp td:first-child{width:auto}
+}
+@media (max-width:560px){.plans{grid-template-columns:1fr}.pain-grid{grid-template-columns:1fr}.cmp{font-size:14px}.cmp th,.cmp td{padding:12px}}
 </style>
 </head>
 <body>
@@ -154,182 +173,198 @@ footer{padding:34px var(--pad) 56px;border-top:1px solid var(--rule);display:fle
 <nav class="nav" id="nav">
   <a class="logo" href="#top"><img src="assets/waesna-mark.png" alt="WAESNA" width="704" height="466">WAESNA</a>
   <div class="nav-links">
-    <a href="#urun">Ürün</a><a href="#nasil">Nasıl çalışır</a><a href="#teknik">Teknik</a>
-    <a href="#fiyat">Fiyat</a><a href="#indir">İndir</a><a href="#sss">SSS</a>
+    <a href="#urun" data-t="nav.product">Ürün</a><a href="#karsilastir" data-t="nav.compare">Karşılaştır</a>
+    <a href="#fiyat" data-t="nav.pricing">Fiyat</a><a href="#indir" data-t="nav.download">İndir</a><a href="#sss" data-t="nav.faq">SSS</a>
   </div>
-  <a class="btn solid" href="#indir">İndir</a>
+  <div class="nav-r">
+    <div class="lang" role="group" aria-label="Language"><button data-lang="tr">TR</button><button data-lang="en">EN</button></div>
+    <a class="btn solid" href="#indir" data-t="cta.try">7 gün ücretsiz dene</a>
+  </div>
 </nav>
 
 <header class="hero" id="top">
   <div>
-    <p class="mono kicker">WAESNA · VoyagerOne 1.0</p>
-    <h1>Masaüstünde çalışan yapay zekâ çalışma alanı.</h1>
-    <p class="lead">VoyagerOne; kod yazmak, belge üretmek ve bilgisayarında iş yapmak için kullanılan bir masaüstü uygulaması. Yerel modelle tamamen çevrimdışı çalışabilir ya da kendi API anahtarınla bulut modeline bağlanır. Sohbetlerin ve dosyaların bu bilgisayarda kalır.</p>
-    <div class="cta">
-      <a class="btn solid" href="#indir">İndir ve 7 gün dene</a>
-      <a class="btn line" href="#fiyat">Fiyatlar</a>
-    </div>
-    <div class="facts">
-      <div><b>72</b>uzman ajan hattı</div>
-      <div><b>5</b>kalite denetimi katmanı</div>
-      <div><b>3</b>işletim sistemi</div>
-      <div><b>0</b>bulut hesabı</div>
-    </div>
+    <p class="mono" data-t="hero.kicker">WAESNA · VoyagerOne 1.0</p>
+    <h1 style="margin-top:18px" data-th="hero.title">Yapay zekâ <em>senin</em> bilgisayarında. Abonelik yok.</h1>
+    <p class="lead" data-t="hero.lead"></p>
+    <div class="cta"><a class="btn solid" href="#indir" data-t="cta.try">7 gün ücretsiz dene</a><a class="btn line" href="#fiyat" data-t="cta.pricing">Fiyatlar</a></div>
+    <div class="trust"><span data-t="trust.1"></span><span data-t="trust.2"></span><span data-t="trust.3"></span><span data-t="trust.4"></span></div>
   </div>
-  <div class="vmark" aria-hidden="true">
-    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-      <defs><linearGradient id="vg" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0" stop-color="#D9A45E"/><stop offset="1" stop-color="#A9722F"/></linearGradient></defs>
-      <path fill="url(#vg)" d="M48.3 89.8 L46.5 89.8 L45.4 88.9 L6.5 26.6 L6.0 25.1 L7.4 22.8 L14.5 22.5 L16.4 23.6 L47.2 74.2 L49.5 76.0 L54.9 76.3 L55.5 76.9 L55.8 78.1 Z"/>
-      <path fill="url(#vg)" d="M58.4 69.4 L53.0 69.4 L51.7 68.9 L50.9 67.7 L51.4 65.0 L83.9 11.5 L85.5 10.2 L92.9 10.4 L94.0 12.0 L93.5 14.3 L61.0 67.5 Z"/>
-    </svg>
+  <div class="demo" aria-hidden="true">
+    <div class="demo-bar"><i></i><i></i><i></i><b>VoyagerOne</b></div>
+    <div class="msg u m1" data-t="demo.user"></div>
+    <div class="msg a m2"><span data-t="demo.ai"></span>
+      <div class="file"><i style="background:#3EE0A1">XLSX</i><div><b data-t="demo.f1">sales-report.xlsx</b><span data-t="demo.saved"></span></div></div></div>
+    <div class="msg u m3" data-t="demo.user2"></div>
+    <div class="msg a m4"><div class="file" style="margin-top:0"><i style="background:#FFB45C">PPTX</i><div><b data-t="demo.f2">presentation.pptx</b><span data-t="demo.ready"></span></div></div></div>
   </div>
 </header>
 
+<section class="pain">
+  <p class="mono rv" data-t="pain.k"></p>
+  <div class="pain-grid rv"><div data-t="pain.1"></div><div data-t="pain.2"></div><div data-t="pain.3"></div><div data-t="pain.4"></div></div>
+  <p class="pain-fix rv" data-t="pain.fix"></p>
+</section>
+
 <section id="urun">
-  <div class="sec-head rv"><p class="mono">01 — Ürün</p><h2>Ne yapar</h2></div>
+  <div class="sec-head rv"><p class="mono" data-t="feat.k"></p><h2 data-t="feat.h"></h2></div>
   <div class="grid rv">
-    <div class="cell"><p class="mono">Model</p><h3>Yerel ya da bulut</h3>
-      <p>Ollama kuruluysa model bu bilgisayarda çalışır ve mesajların dışarı çıkmaz. Dilersen kendi Gemini, OpenAI (ve uyumlu uçlar) veya Anthropic anahtarını girersin. Anahtar yalnızca senin kullanıcı hesabının okuyabildiği bir dosyada tutulur.</p></div>
-    <div class="cell"><p class="mono">Ajan hattı</p><h3>72 ajan, 5 denetim</h3>
-      <p>Karmaşık işlerde planlayıcı, mühendislik ve kalite ajanları sırayla çalışır; cevap beş bağımsız denetimden geçer. Basit sorular tek adımda yanıtlanır, gereksiz tur atılmaz.</p></div>
-    <div class="cell"><p class="mono">Çıktı</p><h3>Belge ve dosya üretimi</h3>
-      <p>Word, Excel, PowerPoint, PDF, SVG ve 3D model dosyalarını sohbetin içinden üretir. Dosyalar çalışma klasörüne kaydedilir, tek tıkla açılır.</p></div>
-    <div class="cell"><p class="mono">Bilgisayar erişimi</p><h3>Onayınla komut çalıştırma</h3>
-      <p>Terminal komutu çalıştırır, dosya okur, yazar, düzenler ve arar. Her komut ve dosya değişikliği öncesi işletim sisteminin kendi onay penceresi açılır. Varsayılan olarak kapalıdır.</p></div>
-    <div class="cell"><p class="mono">Kod</p><h3>Çalıştırılabilir kod tuvali</h3>
-      <p>Ürettiği Python ve JavaScript kodunu ayrı, sınırlandırılmış bir süreçte çalıştırır; paket kurar, çıktıyı gösterir. Tarayıcıda çalışan canlı önizleme üretebilir.</p></div>
-    <div class="cell"><p class="mono">Giriş</p><h3>Çevrimdışı dikte</h3>
-      <p>Mikrofon düğmesine basıp konuşursun, konuşma tanıma bu bilgisayarda çalışır. Ses kaydı hiçbir yere gönderilmez.</p></div>
+    <div class="cell"><p class="mono" data-t="f1.k"></p><h3 data-t="f1.h"></h3><p data-t="f1.p"></p></div>
+    <div class="cell"><p class="mono" data-t="f2.k"></p><h3 data-t="f2.h"></h3><p data-t="f2.p"></p></div>
+    <div class="cell"><p class="mono" data-t="f3.k"></p><h3 data-t="f3.h"></h3><p data-t="f3.p"></p></div>
+    <div class="cell"><p class="mono" data-t="f4.k"></p><h3 data-t="f4.h"></h3><p data-t="f4.p"></p></div>
+    <div class="cell"><p class="mono" data-t="f5.k"></p><h3 data-t="f5.h"></h3><p data-t="f5.p"></p></div>
+    <div class="cell"><p class="mono" data-t="f6.k"></p><h3 data-t="f6.h"></h3><p data-t="f6.p"></p></div>
+  </div>
+</section>
+
+<section id="karsilastir">
+  <div class="sec-head rv"><p class="mono" data-t="cmp.k"></p><h2 data-t="cmp.h"></h2></div>
+  <div class="rv" style="overflow-x:auto">
+    <table class="cmp">
+      <thead><tr><th></th><th data-t="cmp.col1"></th><th data-t="cmp.col2"></th></tr></thead>
+      <tbody>
+        <tr><td data-t="cmp.r1"></td><td data-t="cmp.r1a"></td><td data-t="cmp.r1b"></td></tr>
+        <tr><td data-t="cmp.r2"></td><td data-t="cmp.r2a"></td><td data-t="cmp.r2b"></td></tr>
+        <tr><td data-t="cmp.r3"></td><td data-t="cmp.r3a"></td><td data-t="cmp.r3b"></td></tr>
+        <tr><td data-t="cmp.r4"></td><td data-t="cmp.r4a"></td><td data-t="cmp.r4b"></td></tr>
+        <tr><td data-t="cmp.r5"></td><td data-t="cmp.r5a"></td><td data-t="cmp.r5b"></td></tr>
+      </tbody>
+    </table>
+    <p class="cmp-note" data-t="cmp.note"></p>
   </div>
 </section>
 
 <section id="nasil">
-  <div class="sec-head rv"><p class="mono">02 — Kurulum</p><h2>Nasıl çalışır</h2></div>
+  <div class="sec-head rv"><p class="mono" data-t="how.k"></p><h2 data-t="how.h"></h2></div>
   <div class="steps rv">
-    <div class="step"><div><h3>İndir ve aç</h3><p>Kurulum sihirbazı gerekli bileşenleri indirir ve mikrofonu test eder. İnternet yalnızca bu adımda ve bulut modeli kullanırsan gerekir.</p></div></div>
-    <div class="step"><div><h3>Modelini seç</h3><p>Ollama kuruluysa uygulama yerel modelleri kendisi bulur. Bulut kullanacaksan Ayarlar → Motor bölümüne kendi API anahtarını girersin.</p></div></div>
-    <div class="step"><div><h3>Çalış</h3><p>Sohbet et, belge ürettir, kod çalıştır. Lisans anahtarını Ayarlar → Lisans bölümüne girdiğinde deneme süresi biter ve süresiz kullanım açılır.</p></div></div>
+    <div class="step"><h3 data-t="s1.h"></h3><p data-t="s1.p"></p></div>
+    <div class="step"><h3 data-t="s2.h"></h3><p data-t="s2.p"></p></div>
+    <div class="step"><h3 data-t="s3.h"></h3><p data-t="s3.p"></p></div>
   </div>
 </section>
 
 <section id="teknik">
-  <div class="sec-head rv"><p class="mono">03 — Teknik</p><h2>Gereksinimler</h2></div>
+  <div class="sec-head rv"><p class="mono" data-t="spec.k"></p><h2 data-t="spec.h"></h2></div>
   <dl class="spec rv">
-    <div><dt>İşletim sistemi</dt><dd>macOS 11 ve üzeri (Apple Silicon) · Windows 10/11 (64 bit) · Linux (64 bit)</dd></div>
-    <div><dt>Kurulum boyutu</dt><dd>Yaklaşık 85 MB. Dikte modeli ilk açılışta ayrıca indirilir (~45 MB).</dd></div>
-    <div><dt>Yapay zekâ sağlayıcıları</dt><dd>Ollama (yerel) · Google Gemini · OpenAI ve uyumlu uçlar · Anthropic Claude</dd></div>
-    <div><dt>Veri konumu</dt><dd>Sohbetler, projeler ve dosyalar yalnızca bu bilgisayarda. Bulut hesabı ve sunucu senkronizasyonu yok.</dd></div>
-    <div><dt>Arayüz dili</dt><dd>Türkçe ve İngilizce</dd></div>
-    <div><dt>Lisans</dt><dd>Tek seferlik ödeme, süresiz kullanım. Anahtar çevrimdışı doğrulanır; etkinleştirmek için internet gerekmez.</dd></div>
+    <div><dt data-t="sp1.t"></dt><dd data-t="sp1.d"></dd></div><div><dt data-t="sp2.t"></dt><dd data-t="sp2.d"></dd></div>
+    <div><dt data-t="sp3.t"></dt><dd data-t="sp3.d"></dd></div><div><dt data-t="sp4.t"></dt><dd data-t="sp4.d"></dd></div>
+    <div><dt data-t="sp5.t"></dt><dd data-t="sp5.d"></dd></div><div><dt data-t="sp6.t"></dt><dd data-t="sp6.d"></dd></div>
   </dl>
 </section>
 
 <section id="fiyat">
-  <div class="sec-head rv"><p class="mono">04 — Fiyat</p><h2>Planlar</h2></div>
-  <p class="lead rv" style="margin-bottom:34px">Tek seferlik ödeme, süresiz lisans. Vergi ödeme sayfasında ülkene göre eklenir.
-  Ödemeden hemen sonra lisans anahtarın e-postana gelir; uygulamada <b>Ayarlar → Lisans</b> bölümüne yapıştırman yeterli.</p>
+  <div class="sec-head rv"><p class="mono" data-t="price.k"></p><h2 data-t="price.h"></h2></div>
+  <p class="lead rv" style="margin-bottom:34px" data-t="price.lead"></p>
   <div class="plans rv">
-    <div class="plan"><p class="mono">Deneme</p><div class="price">Ücretsiz<span>7 gün, tam sürüm</span></div>
-      <ul><li>Tüm özellikler açık</li><li>Kart bilgisi istemez</li></ul>
-      <a class="btn line" href="#indir">İndir</a></div>
-    <div class="plan hl"><p class="mono">Pro</p><div class="price">$149<span>1 kullanıcı · süresiz</span></div>
-      <ul><li>Sınırsız kullanım</li><li>72 ajanlık tam hat</li><li>VoyagerOne API</li></ul>
-      <button class="btn solid" data-buy="pro"><span>Satın al</span></button></div>
-    <div class="plan"><p class="mono">Team</p><div class="price">$599<span>5 kullanıcı · süresiz</span></div>
-      <ul><li>Pro'daki her şey</li><li>Organizasyon yönetimi</li><li>Üye yetkileri</li></ul>
-      <button class="btn line" data-buy="team"><span>Satın al</span></button></div>
-    <div class="plan"><p class="mono">Company</p><div class="price">$2.499<span>60 kullanıcı · süresiz</span></div>
-      <ul><li>Team'deki her şey</li><li>60 koltuk</li><li>Öncelikli destek</li></ul>
-      <button class="btn line" data-buy="company"><span>Satın al</span></button></div>
+    <div class="plan"><p class="mono" data-t="p0.k"></p><div class="price"><b data-t="p0.p" style="font-weight:600"></b><span data-t="p0.s"></span></div>
+      <ul><li data-t="p0.1"></li><li data-t="p0.2"></li></ul><a class="btn line" href="#indir" data-t="p0.b"></a></div>
+    <div class="plan hl"><p class="mono">Pro</p><div class="price">$149<span data-t="p1.s"></span></div>
+      <ul><li data-t="p1.1"></li><li data-t="p1.2"></li><li data-t="p1.3"></li></ul><button class="btn solid" data-buy="pro"><span data-t="buy"></span></button></div>
+    <div class="plan"><p class="mono">Team</p><div class="price">$599<span data-t="p2.s"></span></div>
+      <ul><li data-t="p2.1"></li><li data-t="p2.2"></li><li data-t="p2.3"></li></ul><button class="btn line" data-buy="team"><span data-t="buy"></span></button></div>
+    <div class="plan"><p class="mono">Company</p><div class="price">$2,499<span data-t="p3.s"></span></div>
+      <ul><li data-t="p3.1"></li><li data-t="p3.2"></li><li data-t="p3.3"></li></ul><button class="btn line" data-buy="company"><span data-t="buy"></span></button></div>
   </div>
 </section>
 
 <section id="indir">
-  <div class="sec-head rv"><p class="mono">05 — İndirmeler</p><h2>Sürüm <span data-version>1.0.0</span></h2></div>
+  <div class="sec-head rv"><p class="mono" data-t="dl.k"></p><h2><span data-t="dl.h"></span> <span data-version>1.0.1</span></h2></div>
   <div class="dl-grid rv">
-    <a class="dl" data-dl="mac" rel="noopener">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.3 12.9c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.1-2.8.9-3.5.9s-1.8-.8-3-.8c-1.5 0-2.9.9-3.7 2.3-1.6 2.7-.4 6.8 1.1 9 .8 1.1 1.7 2.3 2.9 2.2 1.2 0 1.6-.7 3-.7s1.8.7 3 .7 2-1.1 2.8-2.2c.9-1.2 1.2-2.4 1.2-2.5 0 0-2.4-.9-2.4-3.6zM14.1 5.9c.6-.8 1.1-1.9 1-3-.9 0-2.1.6-2.8 1.4-.6.7-1.2 1.8-1 2.9 1 .1 2.1-.5 2.8-1.3z"/></svg>
-      <b>macOS</b><span class="mono dl-file">.dmg · Apple Silicon</span></a>
-    <a class="dl" data-dl="windows" rel="noopener">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5.8 10.2 4.8V11H3zM11.4 4.6 21 3.3V11h-9.6zM3 12.2h7.2v6.2L3 17.4zM11.4 12.2H21v7.7l-9.6-1.3z"/></svg>
-      <b>Windows</b><span class="mono dl-file">.zip · 64 bit</span></a>
-    <a class="dl" data-dl="linux" rel="noopener">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.6c2.4 0 3.6 1.9 3.6 4.4 0 1.7.6 2.6 1.6 4.1 1.2 1.8 2.4 3.4 2.4 5.3 0 2.3-1.7 3.9-3.5 3.6-1-.2-1.4-.9-2.1-.9h-4c-.7 0-1.1.7-2.1.9-1.8.3-3.5-1.3-3.5-3.6 0-1.9 1.2-3.5 2.4-5.3 1-1.5 1.6-2.4 1.6-4.1 0-2.5 1.2-4.4 3.6-4.4z"/></svg>
-      <b>Linux</b><span class="mono dl-file">.tar.gz · 64 bit</span></a>
+    <a class="dl" data-dl="mac" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.3 12.9c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.1-2.8.9-3.5.9s-1.8-.8-3-.8c-1.5 0-2.9.9-3.7 2.3-1.6 2.7-.4 6.8 1.1 9 .8 1.1 1.7 2.3 2.9 2.2 1.2 0 1.6-.7 3-.7s1.8.7 3 .7 2-1.1 2.8-2.2c.9-1.2 1.2-2.4 1.2-2.5 0 0-2.4-.9-2.4-3.6zM14.1 5.9c.6-.8 1.1-1.9 1-3-.9 0-2.1.6-2.8 1.4-.6.7-1.2 1.8-1 2.9 1 .1 2.1-.5 2.8-1.3z"/></svg>
+      <b>macOS</b><span class="mono dl-file" data-t="dl.mac"></span></a>
+    <a class="dl" data-dl="windows" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5.8 10.2 4.8V11H3zM11.4 4.6 21 3.3V11h-9.6zM3 12.2h7.2v6.2L3 17.4zM11.4 12.2H21v7.7l-9.6-1.3z"/></svg>
+      <b>Windows</b><span class="mono dl-file" data-t="dl.win"></span></a>
+    <a class="dl" data-dl="linux" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.6c2.4 0 3.6 1.9 3.6 4.4 0 1.7.6 2.6 1.6 4.1 1.2 1.8 2.4 3.4 2.4 5.3 0 2.3-1.7 3.9-3.5 3.6-1-.2-1.4-.9-2.1-.9h-4c-.7 0-1.1.7-2.1.9-1.8.3-3.5-1.3-3.5-3.6 0-1.9 1.2-3.5 2.4-5.3 1-1.5 1.6-2.4 1.6-4.1 0-2.5 1.2-4.4 3.6-4.4z"/></svg>
+      <b>Linux</b><span class="mono dl-file" data-t="dl.lin"></span></a>
   </div>
 </section>
 
 <section id="sss">
-  <div class="sec-head rv"><p class="mono">06 — SSS</p><h2>Sık sorulanlar</h2></div>
+  <div class="sec-head rv"><p class="mono" data-t="faq.k"></p><h2 data-t="faq.h"></h2></div>
   <div class="rv">
-    <details><summary>Verilerim nereye gidiyor?</summary>
-      <p>Sohbetler, projeler ve ürettiğin dosyalar yalnızca bu bilgisayarda saklanır. Yerel model (Ollama) kullanırsan mesajların cihazdan hiç çıkmaz. Bulut sağlayıcı seçersen mesajların yanıt üretmek için o sağlayıcıya gider; uygulama bunu açıkça söyler.</p></details>
-    <details><summary>Lisans kaç cihazda çalışır?</summary>
-      <p>Pro lisansı bir kullanıcı içindir. Anahtar, satın alırken kullandığın e-postaya tanımlanır. İlk etkinleştirme internet ister, sonrasında uygulama çevrimdışı çalışır. Team ve Company planlarında koltuk sayısı kadar kullanıcı tanımlanır.</p></details>
-    <details><summary>Lisans anahtarımı nereden alırım?</summary>
-      <p>Ödemeyi tamamladığın anda anahtar ödeme sayfasında gösterilir ve e-postana gönderilir. VoyagerOne'da Ayarlar → Lisans bölümüne satın alma e-postanı ve anahtarı girip Etkinleştir'e bas. E-posta gelmediyse spam klasörüne bak ya da bize yaz.</p></details>
-    <details><summary>Uygulama internetsiz çalışır mı?</summary>
-      <p>Evet. Ollama ile yerel model kullanıldığında sohbet, belge üretimi ve dikte tamamen çevrimdışı çalışır. İnternet yalnızca ilk kurulumda, bulut modeli kullanıldığında ve web araması açıkken gerekir.</p></details>
-    <details><summary>macOS'ta “bilinmeyen geliştirici” uyarısı alıyorum.</summary>
-      <p>Uygulama henüz Apple tarafından imzalanmadı. Sistem Ayarları → Gizlilik ve Güvenlik bölümünde “Yine de Aç” demen yeterli; bunu bir kez yapman gerekiyor. İmzalı sürüm hazırlanıyor.</p></details>
-    <details><summary>Yapay zekânın verdiği cevaplara güvenebilir miyim?</summary>
-      <p>Cevaplar otomatik üretilir ve hatalı olabilir. Önemli kararlardan önce doğrula. Uygulama, komut çalıştırma ve dosya değiştirme gibi geri alınamaz işlemler için her seferinde onayını ister.</p></details>
-    <details><summary>Güncellemeler ücretli mi?</summary>
-      <p>Hayır. Lisans süresizdir ve 1.x sürüm güncellemeleri ücretsizdir. Uygulama açılışta yeni sürüm olup olmadığını kontrol eder.</p></details>
+    <details><summary data-t="q1"></summary><p data-t="a1"></p></details>
+    <details><summary data-t="q2"></summary><p data-t="a2"></p></details>
+    <details><summary data-t="q3"></summary><p data-t="a3"></p></details>
+    <details><summary data-t="q4"></summary><p data-t="a4"></p></details>
+    <details><summary data-t="q5"></summary><p data-t="a5"></p></details>
+    <details><summary data-t="q6"></summary><p data-t="a6"></p></details>
+    <details><summary data-t="q7"></summary><p data-t="a7"></p></details>
   </div>
 </section>
 
 <section id="iletisim">
-  <div class="sec-head rv"><p class="mono">07 — İletişim</p><h2>Soru ve destek</h2></div>
-  <p class="lead rv">Lisans, fatura ve teknik destek için doğrudan yazabilirsin. Genellikle aynı gün içinde dönüş yapılır.</p>
-  <p class="rv" style="margin-top:18px"><a class="btn line" id="mailLink" href="#">E-posta gönder</a></p>
+  <div class="sec-head rv"><p class="mono" data-t="ct.k"></p><h2 data-t="ct.h"></h2></div>
+  <p class="lead rv" data-t="ct.p"></p>
+  <p class="rv" style="margin-top:18px"><a class="btn line" id="mailLink" href="#" data-t="ct.b"></a></p>
 </section>
 
 <footer>
   <span>© <span id="year">2026</span> WAESNA · VoyagerOne</span>
-  <span><a href="privacy.html">Gizlilik ve KVKK</a> · <a href="terms.html">Kullanım Koşulları</a> · <a id="mailFoot" href="#"></a></span>
+  <span><a href="privacy.html" data-t="ft.privacy"></a> · <a href="terms.html" data-t="ft.terms"></a> · <a id="mailFoot" href="#"></a></span>
 </footer>
 
-<script src="config.js"></script>
-<script>
-/* satın alma */
-document.querySelectorAll("[data-buy]").forEach(btn=>{
-  const key = btn.dataset.buy;
-  const url = (CONFIG.buy[key] || "").trim();
-  if(/^https:\/\//i.test(url)){
-    btn.addEventListener("click", ()=> window.open(url,"_blank","noopener,noreferrer"));
-  }else{
-    btn.querySelector("span").textContent = "Bilgi al";
-    btn.addEventListener("click", ()=>{
-      location.href = "mailto:"+CONFIG.email+"?subject="+encodeURIComponent("VoyagerOne "+key+" lisansı");
-    });
-  }
-});
+<a class="sticky" id="sticky" href="#indir" data-t="cta.sticky">7 gün ücretsiz dene</a>
 
-/* indirmeler */
-(function(){
-  let ready = 0;
-  document.querySelectorAll("[data-dl]").forEach(a=>{
+<script src="config.js"></script>
+<script src="i18n.js"></script>
+<script>
+/* dil: tarayıcı diline göre, düğmeyle değiştirilebilir */
+applyLang(siteLang());
+document.querySelectorAll("[data-lang]").forEach(b => b.addEventListener("click", () => {
+  try { localStorage.setItem("waesna_lang", b.dataset.lang); } catch (e) {}
+  applyLang(b.dataset.lang);
+}));
+
+/* satın alma: link yoksa e-postaya düşer (dil değişince metin güncellenir) */
+function wireBuy() {
+  document.querySelectorAll("[data-buy]").forEach(btn => {
+    const url = (CONFIG.buy[btn.dataset.buy] || "").trim(), ok = /^https:\/\//i.test(url);
+    btn.querySelector("span").textContent = T(ok ? "buy" : "buy.info");
+    btn.onclick = () => ok ? window.open(url, "_blank", "noopener,noreferrer")
+      : (location.href = "mailto:" + CONFIG.email + "?subject=" + encodeURIComponent("VoyagerOne " + btn.dataset.buy));
+  });
+}
+
+/* indirmeler + ziyaretçinin işletim sistemi */
+function detectOS() {
+  const p = (navigator.userAgentData && navigator.userAgentData.platform) || navigator.platform || navigator.userAgent;
+  return /mac/i.test(p) ? "mac" : /win/i.test(p) ? "windows" : /linux|x11/i.test(p) && !/android/i.test(navigator.userAgent) ? "linux" : "";
+}
+function wireDownloads() {
+  const os = detectOS(), grid = document.querySelector(".dl-grid");
+  document.querySelectorAll("[data-dl]").forEach(a => {
     const url = (CONFIG.downloads[a.dataset.dl] || "").trim();
-    if(/^https:\/\//i.test(url)){ a.href = url; ready++; }
-    else{ a.setAttribute("aria-disabled","true"); a.querySelector(".dl-file").textContent = "yakında"; }
+    a.querySelector(".yours")?.remove();
+    if (/^https:\/\//i.test(url)) { a.href = url; a.removeAttribute("aria-disabled"); }
+    else { a.removeAttribute("href"); a.setAttribute("aria-disabled", "true"); a.querySelector(".dl-file").textContent = T("dl.soon"); }
+    if (a.dataset.dl === os) {
+      a.classList.add("mine"); grid.prepend(a);
+      const tag = document.createElement("span"); tag.className = "yours"; tag.textContent = T("dl.yours"); a.appendChild(tag);
+    }
   });
   document.querySelector("[data-version]").textContent = CONFIG.version;
-})();
+}
+function wireLegal() {
+  const en = document.documentElement.lang !== "tr";
+  document.querySelectorAll('a[href^="privacy.html"],a[href^="terms.html"]').forEach(a => a.href = a.getAttribute("href").split("#")[0] + (en ? "#en" : ""));
+}
+function refresh() { wireBuy(); wireDownloads(); wireLegal(); }
+document.addEventListener("langchange", refresh); refresh();
 
-/* e-posta */
-const mail = "mailto:"+CONFIG.email;
+const mail = "mailto:" + CONFIG.email;
 mailLink.href = mail; mailFoot.href = mail; mailFoot.textContent = CONFIG.email;
 year.textContent = new Date().getFullYear();
 
-/* nav çizgisi + tek ölçülü giriş animasyonu */
-const nav = document.getElementById("nav");
-addEventListener("scroll", ()=> nav.classList.toggle("on", scrollY > 8), {passive:true});
-const io = new IntersectionObserver((es)=>es.forEach(e=>{
-  if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); }
-}), {rootMargin:"0px 0px -10% 0px"});
-document.querySelectorAll(".rv").forEach(el=>io.observe(el));
+/* nav çizgisi, mobil alt düğme (hero geçildikten sonra, indirme bölümünde gizlenir) */
+const nav = document.getElementById("nav"), sticky = document.getElementById("sticky");
+addEventListener("scroll", () => {
+  nav.classList.toggle("on", scrollY > 8);
+  const dl = document.getElementById("indir").getBoundingClientRect();
+  sticky.classList.toggle("show", scrollY > innerHeight * .8 && !(dl.top < innerHeight && dl.bottom > 0));
+}, { passive: true });
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { rootMargin: "0px 0px -8% 0px" });
+document.querySelectorAll(".rv").forEach(el => io.observe(el));
 </script>
 </body>
 </html>
