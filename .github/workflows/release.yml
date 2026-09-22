@@ -1,0 +1,21 @@
+# Sürüm dosyaları "release-vX.Y.Z" dalında durur; bu iş onları GitHub Releases'a yükler.
+name: Sürüm yayınla
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Sürüm etiketi (ör. v1.0.3)"
+        required: true
+permissions:
+  contents: write
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: release-${{ inputs.tag }}
+      - run: gh release create "$TAG" VoyagerOne-* SHA256SUMS.txt --target "release-$TAG" --title "VoyagerOne ${TAG#v}" --notes "Bulut API ile de VoyagerOne olarak konuşur; karşılaştırma sorularında uygulamayı anlatır." --latest
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ inputs.tag }}
